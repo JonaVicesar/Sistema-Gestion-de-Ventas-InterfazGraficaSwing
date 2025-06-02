@@ -1,0 +1,546 @@
+[
+  {
+    "idVenta": 1,
+    "cliente": {
+      "nombreCompleto": "Juan Perez",
+      "metodoPago": "TARJETA",
+      "tarjeta": "1234-5678-9012-3456",
+      "edad": 30,
+      "documento": 123456,
+      "telefono": "555-1234"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Yes Yes",
+          "id": 2,
+          "precio": 0.55,
+          "cantidad": 1000
+        },
+        "cantidad": 3
+      },
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 494
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-05-31",
+    "total": 10.65,
+    "anulada": false
+  },
+  {
+    "idVenta": 2,
+    "cliente": {
+      "nombreCompleto": "Maria Lopez",
+      "metodoPago": "EFECTIVO",
+      "edad": 28,
+      "documento": 654321,
+      "telefono": "555-5678"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Smartphone",
+          "id": 2,
+          "precio": 800.0,
+          "cantidad": 200
+        },
+        "cantidad": 1
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 800.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 3,
+    "cliente": {
+      "nombreCompleto": "Carlos Gomez",
+      "metodoPago": "TARJETA",
+      "tarjeta": "9876-5432-1098-7654",
+      "edad": 35,
+      "documento": 789012,
+      "telefono": "555-9012"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Pringles",
+          "id": 1,
+          "precio": 14.0,
+          "cantidad": 1000
+        },
+        "cantidad": 126
+      },
+      {
+        "producto": {
+          "nombre": "Yes Yes",
+          "id": 2,
+          "precio": 0.55,
+          "cantidad": 1000
+        },
+        "cantidad": 60
+      },
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 500
+        },
+        "cantidad": 104
+      }
+    ],
+    "fecha": "2025-06-02",
+    "total": 2109.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 4,
+    "cliente": {
+      "nombreCompleto": "Nathan Vicesar",
+      "metodoPago": "EFECTIVO",
+      "edad": 16,
+      "documento": 5556832,
+      "telefono": "0987676767"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Pringles",
+          "id": 1,
+          "precio": 14.0,
+          "cantidad": 1000
+        },
+        "cantidad": 5
+      },
+      {
+        "producto": {
+          "nombre": "Yes Yes",
+          "id": 2,
+          "precio": 0.55,
+          "cantidad": 1000
+        },
+        "cantidad": 7
+      },
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 500
+        },
+        "cantidad": 2
+      }
+    ],
+    "fecha": "2025-05-31",
+    "total": 79.85,
+    "anulada": false
+  },
+  {
+    "idVenta": 5,
+    "cliente": {
+      "nombreCompleto": "Derlis Gonzalez",
+      "metodoPago": "EFECTIVO",
+      "edad": 31,
+      "documento": 2090394,
+      "telefono": "0976543525"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 500
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-05-31",
+    "total": 9.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 6,
+    "cliente": {
+      "nombreCompleto": "Richard Ortiz",
+      "metodoPago": "TARJETA",
+      "tarjeta": "09876723456712",
+      "edad": 34,
+      "documento": 4443322,
+      "telefono": "0987787878"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Galletitas Tortuguita",
+          "id": 4,
+          "precio": 6.0,
+          "cantidad": 500
+        },
+        "cantidad": 1
+      }
+    ],
+    "fecha": "2025-05-31",
+    "total": 6.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 7,
+    "cliente": {
+      "nombreCompleto": "Ramon Sosa",
+      "metodoPago": "EFECTIVO",
+      "edad": 27,
+      "documento": 4444333,
+      "telefono": "0987665544"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Yes Yes",
+          "id": 2,
+          "precio": 0.55,
+          "cantidad": 1000
+        },
+        "cantidad": 1
+      },
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 500
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-05-31",
+    "total": 9.55,
+    "anulada": false
+  },
+  {
+    "idVenta": 8,
+    "cliente": {
+      "nombreCompleto": "Neymar Junior",
+      "metodoPago": "EFECTIVO",
+      "edad": 32,
+      "documento": 2345888,
+      "telefono": "0987888999"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Yes Yes",
+          "id": 2,
+          "precio": 0.55,
+          "cantidad": 1000
+        },
+        "cantidad": 1
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 0.55,
+    "anulada": false
+  },
+  {
+    "idVenta": 9,
+    "cliente": {
+      "nombreCompleto": "Benito Martinez",
+      "metodoPago": "TARJETA",
+      "tarjeta": "12343456342312",
+      "edad": 29,
+      "documento": 5555444,
+      "telefono": "098778636"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Pringles",
+          "id": 1,
+          "precio": 14.0,
+          "cantidad": 1000
+        },
+        "cantidad": 8
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 112.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 10,
+    "cliente": {
+      "nombreCompleto": "Richard Ortiz",
+      "metodoPago": "TARJETA",
+      "tarjeta": "09876723456712",
+      "edad": 34,
+      "documento": 4443322,
+      "telefono": "0987787878"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Fortin Etiqueta Negra",
+          "id": 6,
+          "precio": 6.0,
+          "cantidad": 300
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 18.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 11,
+    "cliente": {
+      "nombreCompleto": "Derlis Gonzalez",
+      "metodoPago": "EFECTIVO",
+      "edad": 31,
+      "documento": 2090394,
+      "telefono": "0976543525"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 500
+        },
+        "cantidad": 1
+      },
+      {
+        "producto": {
+          "nombre": "Fanta",
+          "id": 5,
+          "precio": 10.0,
+          "cantidad": 250
+        },
+        "cantidad": 1
+      },
+      {
+        "producto": {
+          "nombre": "Fortin Etiqueta Negra",
+          "id": 6,
+          "precio": 6.0,
+          "cantidad": 300
+        },
+        "cantidad": 1
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 19.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 12,
+    "cliente": {
+      "nombreCompleto": "Novak Djokovic",
+      "metodoPago": "EFECTIVO",
+      "edad": 40,
+      "documento": 5908897,
+      "telefono": "0987844123"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Galletitas Tortuguita",
+          "id": 4,
+          "precio": 6.0,
+          "cantidad": 500
+        },
+        "cantidad": 2
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 12.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 13,
+    "cliente": {
+      "nombreCompleto": "Jona",
+      "metodoPago": "efectivo",
+      "edad": 16,
+      "documento": 55568882,
+      "telefono": "0987676767"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 500
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 9.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 14,
+    "cliente": {
+      "nombreCompleto": "Benito Martinez",
+      "metodoPago": "TARJETA",
+      "tarjeta": "12343456342312",
+      "edad": 29,
+      "documento": 5555444,
+      "telefono": "098778636"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Fanta",
+          "id": 5,
+          "precio": 10.0,
+          "cantidad": 235
+        },
+        "cantidad": 15
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 150.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 15,
+    "cliente": {
+      "nombreCompleto": "Neymar Junior",
+      "metodoPago": "EFECTIVO",
+      "edad": 32,
+      "documento": 2345888,
+      "telefono": "0987888999"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 494
+        },
+        "cantidad": 6
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 18.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 16,
+    "cliente": {
+      "nombreCompleto": "Cristiano Ronaldo",
+      "metodoPago": "EFECTIVO",
+      "edad": 40,
+      "documento": 9000000,
+      "telefono": "09856768549"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Yes Yes",
+          "id": 2,
+          "precio": 0.55,
+          "cantidad": 998
+        },
+        "cantidad": 2
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 1.1,
+    "anulada": false
+  },
+  {
+    "idVenta": 17,
+    "cliente": {
+      "nombreCompleto": "Benito Martinez",
+      "metodoPago": "TARJETA",
+      "tarjeta": "12343456342312",
+      "edad": 29,
+      "documento": 5555444,
+      "telefono": "098778636"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Fortin Etiqueta Negra",
+          "id": 6,
+          "precio": 6.0,
+          "cantidad": 299
+        },
+        "cantidad": 1
+      },
+      {
+        "producto": {
+          "nombre": "Jugo Zuko",
+          "id": 7,
+          "precio": 0.15,
+          "cantidad": 499
+        },
+        "cantidad": 1
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 6.15,
+    "anulada": false
+  },
+  {
+    "idVenta": 18,
+    "cliente": {
+      "nombreCompleto": "Nenecho",
+      "metodoPago": "EFECTIVO",
+      "edad": 45,
+      "documento": 3333333,
+      "telefono": "0988762134"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Cerveza Pilsen",
+          "id": 10,
+          "precio": 9.0,
+          "cantidad": 393
+        },
+        "cantidad": 7
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 63.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 19,
+    "cliente": {
+      "nombreCompleto": "Neymar Junior",
+      "metodoPago": "EFECTIVO",
+      "edad": 32,
+      "documento": 2345888,
+      "telefono": "0987888999"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Fanta",
+          "id": 5,
+          "precio": 10.0,
+          "cantidad": 234
+        },
+        "cantidad": 1
+      }
+    ],
+    "fecha": "2025-06-01",
+    "total": 10.0,
+    "anulada": false
+  }
+]

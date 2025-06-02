@@ -1,0 +1,68 @@
+[
+  {
+    "nombre": "Cerveza Pilsen",
+    "id": 10,
+    "precio": 9.0,
+    "cantidad": 393
+  },
+  {
+    "nombre": "Takis",
+    "id": 3,
+    "precio": 3.0,
+    "cantidad": 494
+  },
+  {
+    "nombre": "Fortin Etiqueta Negra",
+    "id": 6,
+    "precio": 6.0,
+    "cantidad": 299
+  },
+  {
+    "nombre": "Galletitas Tortuguita",
+    "id": 4,
+    "precio": 6.0,
+    "cantidad": 500
+  },
+  {
+    "nombre": "Ron Fortin Frutos Rojos",
+    "id": 11,
+    "precio": 9.0,
+    "cantidad": 145
+  },
+  {
+    "nombre": "Fanta",
+    "id": 5,
+    "precio": 10.0,
+    "cantidad": 234
+  },
+  {
+    "nombre": "Jugo Zuko",
+    "id": 7,
+    "precio": 0.15,
+    "cantidad": 499
+  },
+  {
+    "nombre": "Yes Yes",
+    "id": 2,
+    "precio": 0.55,
+    "cantidad": 998
+  },
+  {
+    "nombre": "Vino Tinto Uvita",
+    "id": 8,
+    "precio": 10.0,
+    "cantidad": 300
+  },
+  {
+    "nombre": "Cerveza Brahma",
+    "id": 9,
+    "precio": 8.0,
+    "cantidad": 400
+  },
+  {
+    "nombre": "Pringles",
+    "id": 1,
+    "precio": 14.0,
+    "cantidad": 1000
+  }
+]

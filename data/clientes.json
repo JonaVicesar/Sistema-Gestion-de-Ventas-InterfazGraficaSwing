@@ -1,0 +1,157 @@
+[
+  {
+    "nombreCompleto": "Benito Martinez",
+    "metodoPago": "TARJETA",
+    "tarjeta": "12343456342312",
+    "edad": 29,
+    "documento": 5555444,
+    "telefono": "098778636"
+  },
+  {
+    "nombreCompleto": "Neymar Junior",
+    "metodoPago": "EFECTIVO",
+    "edad": 32,
+    "documento": 2345888,
+    "telefono": "0987888999"
+  },
+  {
+    "nombreCompleto": "Derlis Gonzalez",
+    "metodoPago": "EFECTIVO",
+    "edad": 31,
+    "documento": 2090394,
+    "telefono": "0976543525"
+  },
+  {
+    "nombreCompleto": "Pablo Zeballos",
+    "metodoPago": "TARJETA",
+    "tarjeta": "56712345120941",
+    "edad": 45,
+    "documento": 2908777,
+    "telefono": "0988321654"
+  },
+  {
+    "nombreCompleto": "Nenecho",
+    "metodoPago": "EFECTIVO",
+    "edad": 45,
+    "documento": 3333333,
+    "telefono": "0988762134"
+  },
+  {
+    "nombreCompleto": "Carlos Alcaraz",
+    "metodoPago": "EFECTIVO",
+    "edad": 21,
+    "documento": 4787905,
+    "telefono": "0989123243"
+  },
+  {
+    "nombreCompleto": "Cristiano Ronaldo",
+    "metodoPago": "EFECTIVO",
+    "edad": 40,
+    "documento": 9000000,
+    "telefono": "09856768549"
+  },
+  {
+    "nombreCompleto": "Julio Enciso",
+    "metodoPago": "TARJETA",
+    "tarjeta": "98125437658349",
+    "edad": 21,
+    "documento": 55648989,
+    "telefono": "098787878"
+  },
+  {
+    "nombreCompleto": "Kylian Mbappé",
+    "metodoPago": "tarjeta",
+    "tarjeta": "123456789012345",
+    "edad": 24,
+    "documento": 53356832,
+    "telefono": "0987676567"
+  },
+  {
+    "nombreCompleto": "Ramon Sosa",
+    "metodoPago": "EFECTIVO",
+    "edad": 27,
+    "documento": 4444333,
+    "telefono": "0987665544"
+  },
+  {
+    "nombreCompleto": "Robert Lewandowski",
+    "metodoPago": "TARJETA",
+    "tarjeta": "12345678890124",
+    "edad": 36,
+    "documento": 77886699,
+    "telefono": "0978664832"
+  },
+  {
+    "nombreCompleto": "Justin Bieber",
+    "metodoPago": "TARJETA",
+    "tarjeta": "12097986573456",
+    "edad": 30,
+    "documento": 8889768,
+    "telefono": "0987776655"
+  },
+  {
+    "nombreCompleto": "Robert Downey Jr",
+    "metodoPago": "TARJETA",
+    "tarjeta": "12345098765674",
+    "edad": 57,
+    "documento": 3124768,
+    "telefono": "0987879677"
+  },
+  {
+    "nombreCompleto": "Leonardo Dicaprio",
+    "metodoPago": "EFECTIVO",
+    "edad": 56,
+    "documento": 2090734,
+    "telefono": "0987878778"
+  },
+  {
+    "nombreCompleto": "Nathan Vicesar",
+    "metodoPago": "EFECTIVO",
+    "edad": 16,
+    "documento": 5556832,
+    "telefono": "0987676767"
+  },
+  {
+    "nombreCompleto": "Lionel Andres Messi",
+    "metodoPago": "EFECTIVO",
+    "edad": 37,
+    "documento": 445566779,
+    "telefono": "0987878789"
+  },
+  {
+    "nombreCompleto": "Jonathan",
+    "metodoPago": "efectivo",
+    "edad": 16,
+    "documento": 5756832,
+    "telefono": "0987676767"
+  },
+  {
+    "nombreCompleto": "Richard Ortiz",
+    "metodoPago": "TARJETA",
+    "tarjeta": "09876723456712",
+    "edad": 34,
+    "documento": 4443322,
+    "telefono": "0987787878"
+  },
+  {
+    "nombreCompleto": "Novak Djokovic",
+    "metodoPago": "EFECTIVO",
+    "edad": 40,
+    "documento": 5908897,
+    "telefono": "0987844123"
+  },
+  {
+    "nombreCompleto": "Maluma",
+    "metodoPago": "EFECTIVO",
+    "edad": 32,
+    "documento": 5551112,
+    "telefono": "0987767676"
+  },
+  {
+    "nombreCompleto": "Jona",
+    "metodoPago": "efectivo",
+    "edad": 16,
+    "documento": 55568882,
+    "telefono": "0987676767"
+  }
+]

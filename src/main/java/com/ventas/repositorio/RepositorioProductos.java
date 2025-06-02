@@ -185,6 +185,10 @@ public class RepositorioProductos {
         return new ArrayList<>(repositorio.values());
     }
     
+    /**
+     * 
+     * @return 
+     */
     public int cantidadProductos(){
         return repositorio.size();
     }
