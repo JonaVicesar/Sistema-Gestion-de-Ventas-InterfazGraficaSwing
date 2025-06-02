@@ -1,23 +1,66 @@
 package com.ventas.repositorio;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.ventas.modelo.Producto;
+import com.ventas.util.PathManager;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * Clase que actúa como repositorio de productos
+ * Clase que actúa como repositorio de productos con persistencia JSON
  * 
  * @author Jona Vicesar
  */
 public class RepositorioProductos {
 
-    
-    public static final HashMap<String, Producto> repositorio = new HashMap<>();
-
+    private static final String FILE_NAME = "productos.json";
+    private final HashMap<String, Producto> repositorio = new HashMap<>();
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final String filePath;
     private int contadorId = 1;
 
     public RepositorioProductos() {
+        this.filePath = PathManager.getDataPath(FILE_NAME);
+        cargarDatos();
+    }
+
+    private void cargarDatos() {
+        try (FileReader reader = new FileReader(filePath)) {
+            Type listType = new TypeToken<ArrayList<Producto>>(){}.getType();
+            List<Producto> productos = gson.fromJson(reader, listType);
+            
+            if (productos != null) {
+                int maxId = 0;
+                for (Producto producto : productos) {
+                    repositorio.put(producto.getNombre().toLowerCase(), producto);
+                    // Encontrar el ID más alto para continuar la secuencia
+                    if (producto.getId() > maxId) {
+                        maxId = producto.getId();
+                    }
+                }
+                // El próximo ID será el máximo + 1
+                contadorId = maxId + 1;
+            }
+        } catch (IOException e) {
+            // Si el archivo no existe, se inicia con repositorio vacío
+            System.out.println("Iniciando nuevo repositorio de productos");
+        }
+    }
+
+    private void guardarDatos() {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            List<Producto> productos = new ArrayList<>(repositorio.values());
+            gson.toJson(productos, writer);
+        } catch (IOException e) {
+            throw new RuntimeException("Error al guardar productos: " + e.getMessage(), e);
+        }
     }
 
     /**
@@ -26,12 +69,14 @@ public class RepositorioProductos {
      * @param nombre Nombre del producto
      * @param precio Precio unitario
      * @param cantidad Stock disponible
-     * @return true si se agrego correctamente
+     * @return true si se agredo correctamente
      */
     public boolean agregarProducto(String nombre, double precio, int cantidad) {
         Producto producto = new Producto(nombre, contadorId, precio, cantidad);
         repositorio.put(nombre.toLowerCase(), producto);
         contadorId += 1;
+        guardarDatos();
+        System.out.println("oiko");
         return true;
     }
 
@@ -43,6 +88,7 @@ public class RepositorioProductos {
      */
     public boolean eliminarProducto(String nombre) {
         repositorio.remove(nombre.toLowerCase());
+        guardarDatos();
         return true;
     }
 
@@ -57,6 +103,7 @@ public class RepositorioProductos {
         Producto producto = repositorio.remove(nombreProducto.toLowerCase());
         producto.setNombre(nuevoNombre);
         repositorio.put(nuevoNombre.toLowerCase(), producto);
+        guardarDatos();
         return true;
     }
 
@@ -71,6 +118,7 @@ public class RepositorioProductos {
         Producto productoAEditar = repositorio.get(nombreProducto.toLowerCase());
         productoAEditar.setPrecio(nuevoPrecio);
         repositorio.replace(nombreProducto.toLowerCase(), productoAEditar);
+        guardarDatos();
         return true;
     }
 
@@ -85,6 +133,7 @@ public class RepositorioProductos {
         Producto productoAEditar = repositorio.get(nombreProducto.toLowerCase());
         productoAEditar.setCantidad(nuevoStock);
         repositorio.replace(nombreProducto.toLowerCase(), productoAEditar);
+        guardarDatos();
         return true;
     }
 
@@ -123,6 +172,7 @@ public class RepositorioProductos {
         if (producto == null) return false;
 
         producto.setCantidad(nuevoStock);
+        guardarDatos();
         return true;
     }
 
@@ -133,5 +183,9 @@ public class RepositorioProductos {
      */
     public List<Producto> listaProductos() {
         return new ArrayList<>(repositorio.values());
+    }
+    
+    public int cantidadProductos(){
+        return repositorio.size();
     }
 }
