@@ -1,5 +1,6 @@
 package com.ventas.vista;
 
+import com.ventas.util.RoundedBorder;
 import com.ventas.controlador.ControladorCliente;
 import com.ventas.controlador.ControladorProducto;
 import com.ventas.controlador.ControladorVenta;
@@ -18,8 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.text.NumberFormat;
+import java.util.Comparator;
 import java.util.Locale;
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class MenuVentas extends JFrame {
 
@@ -32,24 +34,25 @@ public class MenuVentas extends JFrame {
     private JPanel panelPrincipal;
     private JPanel panelIzquierdo;
     private JPanel panelDerecho;
-    private JComboBox<String> comboOrdenar;
 
-    // Colores del tema
-    private final Color COLOR_FONDO = new Color(45, 45, 45);
-    private final Color COLOR_PANEL = new Color(60, 60, 60);
-    private final Color COLOR_BOTON = new Color(80, 80, 80);
-    private final Color COLOR_BOTON_HOVER = new Color(100, 100, 100);
+    private final Color COLOR_ACENTO = new Color(255, 193, 7);
+    private final Color COLOR_FONDO_CLARO = new Color(250, 250, 250);
+    private final Color COLOR_FONDO = new Color(37, 37, 37);
+    private final Color COLOR_PANEL = new Color(50, 50, 50);
+    private final Color COLOR_BOTON = new Color(33, 150, 243);
+    private final Color COLOR_BOTON_HOVER = new Color(66, 165, 245);
     private final Color COLOR_TEXTO = Color.WHITE;
     private final Color COLOR_BUSQUEDA = new Color(70, 70, 70);
-    private final Color COLOR_TABLA_HEADER = new Color(70, 70, 90);
-    private final Color COLOR_TABLA_ROW1 = new Color(50, 50, 60);
-    private final Color COLOR_TABLA_ROW2 = new Color(45, 45, 55);
+    private final Color COLOR_TABLA_HEADER = new Color(25, 118, 210);
+    private final Color COLOR_TABLA_ROW1 = new Color(45, 45, 45);
+    private final Color COLOR_TABLA_ROW2 = new Color(40, 40, 40);
+
     private final MenuPrincipal menuPrincipal;
 
-    public MenuVentas(MenuPrincipal menuPrincipal, 
-                     ControladorCliente contClientes, 
-                     ControladorProducto conProducto,
-                     ControladorVenta contVentas) {
+    public MenuVentas(MenuPrincipal menuPrincipal,
+            ControladorCliente contClientes,
+            ControladorProducto conProducto,
+            ControladorVenta contVentas) {
         this.menuPrincipal = menuPrincipal;
         this.controladorClientes = contClientes;
         this.controladorProductos = conProducto;
@@ -60,7 +63,7 @@ public class MenuVentas extends JFrame {
     }
 
     private void inicializarComponentes() {
-        // Panel principal con fondo degradado
+        // panel principal
         panelPrincipal = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -74,19 +77,13 @@ public class MenuVentas extends JFrame {
             }
         };
         panelPrincipal.setLayout(new BorderLayout());
-
-        // Header con título y logo
         crearHeader();
 
-        // Panel central
         JPanel panelCentral = new JPanel(new BorderLayout());
         panelCentral.setOpaque(false);
 
-        // Panel izquierdo - Menú de opciones
-        crearPanelIzquierdo();
-
-        // Panel derecho - Tabla de ventas
-        crearPanelDerecho();
+        crearPanelIzquierdo();//panel de las opciones
+        crearPanelDerecho();//panel de tabla de ventas
 
         panelCentral.add(panelIzquierdo, BorderLayout.WEST);
         panelCentral.add(panelDerecho, BorderLayout.CENTER);
@@ -105,7 +102,6 @@ public class MenuVentas extends JFrame {
         header.setBackground(new Color(35, 35, 35));
         header.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
 
-        // Logo y título
         JPanel tituloPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         tituloPanel.setOpaque(false);
 
@@ -123,16 +119,20 @@ public class MenuVentas extends JFrame {
 
         header.add(tituloPanel, BorderLayout.WEST);
 
-        // Botón para volver al menú principal
-        JButton btnVolver = new JButton("← Volver al Menú");
-        btnVolver.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        //boton para volver al menu principal
+        JButton btnVolver = new JButton("Volver al Inicio");
+        btnVolver.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         btnVolver.setForeground(COLOR_TEXTO);
-        btnVolver.setBackground(new Color(70, 70, 75));
+        btnVolver.setBackground(COLOR_BOTON);
         btnVolver.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(90, 90, 95), 1),
-                BorderFactory.createEmptyBorder(5, 15, 5, 15)
+                new RoundedBorder(6),
+                BorderFactory.createEmptyBorder(8, 15, 8, 15)
         ));
         btnVolver.addActionListener(e -> volverAlMenuPrincipal());
+
+        header.add(btnVolver, BorderLayout.EAST);
+
+        panelPrincipal.add(header, BorderLayout.NORTH);
 
         header.add(btnVolver, BorderLayout.EAST);
 
@@ -146,25 +146,24 @@ public class MenuVentas extends JFrame {
         panelIzquierdo.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelIzquierdo.setPreferredSize(new Dimension(250, 0));
 
-        // Título del menú
         JLabel tituloMenu = new JLabel("Ventas");
         tituloMenu.setFont(new Font("Arial", Font.BOLD, 28));
         tituloMenu.setForeground(COLOR_TEXTO);
         tituloMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
         tituloMenu.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
 
-        // Estadísticas
+        //cantidad de ventas
         JLabel lblTotal = new JLabel("Total: " + controladorVentas.listarVentas().size() + " ventas");
         lblTotal.setForeground(COLOR_TEXTO);
         lblTotal.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblTotal.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 
-        // Botones del menú
+        //botones del menu
         JButton btnCrearVenta = crearBotonMenu("Crear Venta");
         JButton btnAnularVenta = crearBotonMenu("Anular Venta");
         JButton btnEditarVenta = crearBotonMenu("Editar Venta");
 
-        // Eventos de botones
+        // listeners para los botenes del menu
         btnCrearVenta.addActionListener(e -> mostrarDialogoCrearVenta());
         btnAnularVenta.addActionListener(e -> anularVentaSeleccionada());
         btnEditarVenta.addActionListener(e -> editarVentaSeleccionada());
@@ -193,7 +192,7 @@ public class MenuVentas extends JFrame {
         boton.setMaximumSize(new Dimension(200, 45));
         boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Efecto hover mejorado
+        //hover al presionar
         boton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -222,11 +221,13 @@ public class MenuVentas extends JFrame {
         panelDerecho.setOpaque(false);
         panelDerecho.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Panel superior con búsqueda y ordenamiento
-        JPanel panelSuperior = new JPanel(new BorderLayout(10, 0));
+
+        JPanel panelSuperior = new JPanel(new BorderLayout());
         panelSuperior.setOpaque(false);
 
-        // Panel de búsqueda
+        panelDerecho.add(panelSuperior, BorderLayout.NORTH); 
+
+        // barra de busqueda
         JPanel panelBusqueda = new JPanel(new BorderLayout(10, 0));
         panelBusqueda.setOpaque(false);
 
@@ -252,57 +253,54 @@ public class MenuVentas extends JFrame {
         panelBusqueda.add(lblBuscar, BorderLayout.WEST);
         panelBusqueda.add(campoBusqueda, BorderLayout.CENTER);
 
-        // Panel de ordenamiento
-        JPanel panelOrdenar = new JPanel(new BorderLayout(10, 0));
-        panelOrdenar.setOpaque(false);
+        // opciones de ordenamiento
+        JPanel panelOrdenamiento = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelOrdenamiento.setOpaque(false);
 
         JLabel lblOrdenar = new JLabel("Ordenar por:");
         lblOrdenar.setForeground(COLOR_TEXTO);
-        lblOrdenar.setFont(new Font("Arial", Font.BOLD, 14));
+        lblOrdenar.setFont(new Font("Arial", Font.BOLD, 12));
 
-        String[] opcionesOrden = {"ID", "Cliente", "Total", "Fecha"};
-        comboOrdenar = new JComboBox<>(opcionesOrden);
-        comboOrdenar.setBackground(COLOR_BUSQUEDA);
-        comboOrdenar.setForeground(COLOR_TEXTO);
-        comboOrdenar.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value,
-                    int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (isSelected) {
-                    setBackground(COLOR_BOTON_HOVER);
-                    setForeground(COLOR_TEXTO);
-                } else {
-                    setBackground(COLOR_BUSQUEDA);
-                    setForeground(COLOR_TEXTO);
-                }
-                return this;
-            }
-        });
-        comboOrdenar.addActionListener(e -> ordenarVentas());
+        JButton btnOrdenarCliente = new JButton("Cliente");
+        JButton btnOrdenarTotal = new JButton("Total");
+        JButton btnOrdenarFecha = new JButton("Fecha");
 
-        panelOrdenar.add(lblOrdenar, BorderLayout.WEST);
-        panelOrdenar.add(comboOrdenar, BorderLayout.CENTER);
+        JButton[] botonesOrden = {btnOrdenarCliente, btnOrdenarTotal, btnOrdenarFecha};
+        for (JButton btn : botonesOrden) {
+            btn.setFont(new Font("Arial", Font.PLAIN, 11));
+            btn.setForeground(COLOR_TEXTO);
+            btn.setBackground(COLOR_BOTON);
+            btn.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+            btn.setFocusPainted(false);
+            btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
 
-        panelSuperior.add(panelBusqueda, BorderLayout.CENTER);
-        panelSuperior.add(panelOrdenar, BorderLayout.EAST);
+        btnOrdenarCliente.addActionListener(e -> ordenarTabla("cliente"));
+        btnOrdenarTotal.addActionListener(e -> ordenarTabla("total"));
+        btnOrdenarFecha.addActionListener(e -> ordenarTabla("fecha"));
 
-        // Tabla de ventas
+        panelOrdenamiento.add(lblOrdenar);
+        panelOrdenamiento.add(btnOrdenarCliente);
+        panelOrdenamiento.add(btnOrdenarTotal);
+        panelOrdenamiento.add(btnOrdenarFecha);
+
+        panelSuperior.add(panelBusqueda, BorderLayout.NORTH);
+        panelSuperior.add(panelOrdenamiento, BorderLayout.SOUTH);
+
+        //tabla de las ventas
         String[] columnas = {"ID", "Cliente", "Total", "Método de Pago", "Fecha"};
         modeloTabla = new DefaultTableModel(columnas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Todas las celdas no editables
+                return false;
             }
         };
 
         tablaVentas = new JTable(modeloTabla) {
-            // Renderizado personalizado para la tabla
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component comp = super.prepareRenderer(renderer, row, column);
 
-                // Resaltar fila seleccionada
                 if (isRowSelected(row)) {
                     comp.setBackground(COLOR_BOTON_HOVER);
                     comp.setForeground(COLOR_TEXTO);
@@ -315,7 +313,6 @@ public class MenuVentas extends JFrame {
             }
         };
 
-        // Configuración adicional de la tabla
         tablaVentas.setRowHeight(35);
         tablaVentas.getTableHeader().setBackground(COLOR_TABLA_HEADER);
         tablaVentas.getTableHeader().setForeground(COLOR_TEXTO);
@@ -326,20 +323,18 @@ public class MenuVentas extends JFrame {
         tablaVentas.setShowGrid(true);
         tablaVentas.setAutoCreateRowSorter(true);
 
-        // Personalizar el renderizado de las celdas
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        tablaVentas.getColumnModel().getColumn(0).setCellRenderer(centerRenderer); // ID
-        tablaVentas.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); // Total
-        tablaVentas.getColumnModel().getColumn(3).setCellRenderer(centerRenderer); // Método de Pago
-        tablaVentas.getColumnModel().getColumn(4).setCellRenderer(centerRenderer); // Fecha
+        tablaVentas.getColumnModel().getColumn(0).setCellRenderer(centerRenderer); // el ID
+        tablaVentas.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); // total
+        tablaVentas.getColumnModel().getColumn(3).setCellRenderer(centerRenderer); //pago
+        tablaVentas.getColumnModel().getColumn(4).setCellRenderer(centerRenderer); // fecha
 
-        // Configurar anchos de columnas
         tablaVentas.getColumnModel().getColumn(0).setPreferredWidth(80);  // ID
-        tablaVentas.getColumnModel().getColumn(1).setPreferredWidth(200); // Cliente
-        tablaVentas.getColumnModel().getColumn(2).setPreferredWidth(100); // Total
-        tablaVentas.getColumnModel().getColumn(3).setPreferredWidth(150); // Método de Pago
-        tablaVentas.getColumnModel().getColumn(4).setPreferredWidth(120); // Fecha
+        tablaVentas.getColumnModel().getColumn(1).setPreferredWidth(200); //cliente
+        tablaVentas.getColumnModel().getColumn(2).setPreferredWidth(100); // total
+        tablaVentas.getColumnModel().getColumn(3).setPreferredWidth(150); // metodo de pago
+        tablaVentas.getColumnModel().getColumn(4).setPreferredWidth(120); // fecha
 
         JScrollPane scrollPane = new JScrollPane(tablaVentas);
         scrollPane.getViewport().setBackground(COLOR_PANEL);
@@ -385,17 +380,42 @@ public class MenuVentas extends JFrame {
         }
     }
 
-    private void ordenarVentas() {
-        // Esta funcionalidad se puede implementar ordenando la lista antes de mostrarla
-        cargarDatos(); // Por ahora solo recarga los datos
-        // TODO: Implementar ordenamiento según la opción seleccionada
+    private void ordenarTabla(String criterio) {
+        List<Venta> ventas = controladorVentas.listarVentas();
+        String filtro = campoBusqueda.getText().trim().toLowerCase();
+
+        // filtro para la busqueda
+        if (!filtro.isEmpty()) {
+            ventas = ventas.stream()
+                    .filter(v -> String.valueOf(v.getIdVenta()).contains(filtro)
+                    || v.getCliente().getNombreCompleto().toLowerCase().contains(filtro))
+                    .collect(Collectors.toList());
+        }
+
+        // ordenar por 
+        switch (criterio) {
+            case "cliente":
+                ventas.sort(Comparator.comparing(v -> v.getCliente().getNombreCompleto()));
+                break;
+            case "total":
+                ventas.sort(Comparator.comparing(Venta::getTotal));
+                break;
+            case "fecha":
+                ventas.sort(Comparator.comparing(Venta::getFecha));
+                break;
+        }
+
+        modeloTabla.setRowCount(0);
+        for (Venta venta : ventas) {
+            agregarFilaTabla(venta);
+        }
     }
 
     private void agregarFilaTabla(Venta venta) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Object[] fila = {
             venta.getIdVenta(),
-            venta.getCliente().getNombreCompleto(), // Mostrar nombre en lugar del objeto
+            venta.getCliente().getNombreCompleto(),
             String.format("$%.2f", venta.getTotal()),
             venta.getCliente().getMetodoPago(),
             venta.getFecha().format(formatter)
@@ -407,7 +427,7 @@ public class MenuVentas extends JFrame {
         FormularioVentaDialog dialog = new FormularioVentaDialog(this, null);
         dialog.setVisible(true);
         if (dialog.isGuardado()) {
-            cargarDatos(); // Refrescar tabla
+            cargarDatos(); 
         }
     }
 
@@ -456,7 +476,7 @@ public class MenuVentas extends JFrame {
         }
     }
 
-    // Clase interna para el formulario de venta
+    //clase interna para crear ventas
     private class FormularioVentaDialog extends JDialog {
 
         private Venta venta;
@@ -481,20 +501,18 @@ public class MenuVentas extends JFrame {
             JPanel panel = new JPanel(new BorderLayout(10, 10));
             panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-            // Panel superior: Cliente
+            // seleccion de clientes
             JPanel panelCliente = new JPanel(new GridLayout(0, 2, 5, 5));
             panelCliente.add(new JLabel("Cliente:"));
             comboClientes = new JComboBox<>();
-            // Cargar clientes
             controladorClientes.listaClientes().forEach(comboClientes::addItem);
             panelCliente.add(comboClientes);
 
             panel.add(panelCliente, BorderLayout.NORTH);
 
-            // Panel central: Productos
+            // seleccionar productos
             JPanel panelProductos = new JPanel(new BorderLayout(10, 10));
 
-            // Tabla de productos
             String[] columnas = {"Producto", "Precio Unitario", "Cantidad", "Subtotal"};
             modeloTablaProductos = new DefaultTableModel(columnas, 0) {
                 @Override
@@ -505,11 +523,9 @@ public class MenuVentas extends JFrame {
             tablaProductos = new JTable(modeloTablaProductos);
             JScrollPane scrollTabla = new JScrollPane(tablaProductos);
 
-            // Panel para agregar productos
             JPanel panelAgregar = new JPanel(new GridLayout(0, 4, 5, 5));
             panelAgregar.add(new JLabel("Producto:"));
             comboProductos = new JComboBox<>();
-            // Cargar productos
             controladorProductos.listaProductos().forEach(comboProductos::addItem);
             panelAgregar.add(comboProductos);
 
@@ -530,12 +546,12 @@ public class MenuVentas extends JFrame {
 
             panel.add(panelProductos, BorderLayout.CENTER);
 
-            // Panel inferior: Total y botones
+            //panel inferior para el total de la venta
             JPanel panelInferior = new JPanel(new BorderLayout());
 
             JPanel panelTotal = new JPanel(new FlowLayout(FlowLayout.RIGHT));
             panelTotal.add(new JLabel("Total:"));
-            lblTotal = new JLabel("$0.00");
+            lblTotal = new JLabel("$0");
             lblTotal.setFont(lblTotal.getFont().deriveFont(Font.BOLD, 16f));
             panelTotal.add(lblTotal);
             panelInferior.add(panelTotal, BorderLayout.NORTH);
@@ -553,10 +569,9 @@ public class MenuVentas extends JFrame {
 
             panel.add(panelInferior, BorderLayout.SOUTH);
 
-            // Si estamos editando, cargar datos de la venta existente
             if (venta != null) {
                 comboClientes.setSelectedItem(venta.getCliente());
-                // Cargar productos de la venta
+                // compra original
                 venta.getListaCompras().forEach((producto, cantidad) -> {
                     Object[] fila = {
                         producto.getNombre(),
@@ -580,7 +595,7 @@ public class MenuVentas extends JFrame {
                 return;
             }
 
-            // Verificar si ya está en la tabla para actualizar cantidad
+            
             for (int i = 0; i < modeloTablaProductos.getRowCount(); i++) {
                 String nombreProducto = (String) modeloTablaProductos.getValueAt(i, 0);
                 if (nombreProducto.equals(producto.getNombre())) {
@@ -594,7 +609,6 @@ public class MenuVentas extends JFrame {
                 }
             }
 
-            // Si no existe, agregar nueva fila
             Object[] fila = {
                 producto.getNombre(),
                 NumberFormat.getCurrencyInstance(Locale.US).format(producto.getPrecio()),
@@ -635,13 +649,13 @@ public class MenuVentas extends JFrame {
                 return;
             }
 
-            // Construir el mapa de productos y cantidades
+            
             HashMap<Producto, Integer> productosVendidos = new HashMap<>();
             for (int i = 0; i < modeloTablaProductos.getRowCount(); i++) {
                 String nombreProducto = (String) modeloTablaProductos.getValueAt(i, 0);
                 int cantidad = (Integer) modeloTablaProductos.getValueAt(i, 2);
 
-                // Buscar el producto por nombre
+           //buscar producto por nombre
                 Producto producto = controladorProductos.listaProductos().stream()
                         .filter(p -> p.getNombre().equals(nombreProducto))
                         .findFirst()
@@ -652,21 +666,18 @@ public class MenuVentas extends JFrame {
             }
 
             if (venta == null) {
-                // Crear nueva venta usando ControladorVenta
                 controladorVentas.limpiarCarrito();
                 for (Map.Entry<Producto, Integer> entry : productosVendidos.entrySet()) {
                     controladorVentas.agregarProductoAlCarrito(
-                        entry.getKey().getNombre(),
-                        entry.getValue()
+                            entry.getKey().getNombre(),
+                            entry.getValue()
                     );
                 }
                 controladorVentas.crearVenta(cliente.getDocumento(), LocalDate.now());
             } else {
-                // Actualizar venta existente
                 venta.getListaCompras().clear();
                 venta.getListaCompras().putAll(productosVendidos);
                 venta.calcularTotal();
-                // Guardar cambios
                 controladorVentas.guardarDatos();
             }
 

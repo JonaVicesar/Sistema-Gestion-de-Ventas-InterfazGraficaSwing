@@ -44,8 +44,8 @@ public class Login extends JFrame {
             
             {
                 try {
-                    // Intentar cargar la imagen de fondo
-                    File imageFile = new File(PathManager.getResourcePath("mueble-caja-para-supermercado.jpg"));
+                    // cargar la imagen de fondo
+                    File imageFile = new File(PathManager.getResourcePath("fondo.jpg"));
                     if (imageFile.exists()) {
                         backgroundImage = ImageIO.read(imageFile);
                     }
@@ -58,14 +58,12 @@ public class Login extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 if (backgroundImage != null) {
-                    // Dibujar la imagen de fondo escalada
+                   
                     g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-                    
-                    // Overlay semi-transparente
                     g.setColor(new Color(0, 0, 0, 100));
                     g.fillRect(0, 0, getWidth(), getHeight());
                 } else {
-                    // Color de fondo alternativo si no hay imagen
+                    // sino se encuentra la imagen se agrega este fondo 
                     g.setColor(new Color(45, 45, 45));
                     g.fillRect(0, 0, getWidth(), getHeight());
                 }
@@ -73,36 +71,14 @@ public class Login extends JFrame {
         };
         
         mainPanel.setLayout(new BorderLayout());
-        
-        // Panel superior con el título
-        JPanel headerPanel = createHeaderPanel();
-        mainPanel.add(headerPanel, BorderLayout.NORTH);
-        
-        // Panel central con el formulario de login
+
+        // panel central con el formulario de login
         JPanel loginPanel = createLoginPanel();
         mainPanel.add(loginPanel, BorderLayout.CENTER);
         
         add(mainPanel);
     }
     
-    private JPanel createHeaderPanel() {
-        JPanel headerPanel = new JPanel();
-        headerPanel.setOpaque(false);
-        headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 15));
-        
-        // Botón Login en la esquina superior izquierda
-        JButton loginHeaderButton = new JButton("Login");
-        loginHeaderButton.setFont(new Font("Arial", Font.BOLD, 14));
-        loginHeaderButton.setForeground(Color.WHITE);
-        loginHeaderButton.setBackground(new Color(80, 80, 80));
-        loginHeaderButton.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
-        loginHeaderButton.setFocusPainted(false);
-        loginHeaderButton.setEnabled(false); // Deshabilitado porque ya estamos en login
-        
-        headerPanel.add(loginHeaderButton);
-        
-        return headerPanel;
-    }
     
     private JPanel createLoginPanel() {
         JPanel containerPanel = new JPanel();
@@ -123,7 +99,7 @@ public class Login extends JFrame {
         
         GridBagConstraints gbc = new GridBagConstraints();
         
-        // Logo/Título
+        // logo
         JLabel logoLabel = new JLabel("V");
         logoLabel.setFont(new Font("Arial", Font.BOLD, 48));
         logoLabel.setForeground(new Color(70, 70, 70));
@@ -135,7 +111,7 @@ public class Login extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         formPanel.add(logoLabel, gbc);
         
-        // Subtítulo
+        // subtitulo
         JLabel subtitleLabel = new JLabel("Vicesar SA");
         subtitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         subtitleLabel.setForeground(new Color(100, 100, 100));
@@ -145,7 +121,7 @@ public class Login extends JFrame {
         gbc.insets = new Insets(0, 0, 30, 0);
         formPanel.add(subtitleLabel, gbc);
         
-        // Campo de usuario
+        // campo usuario
         JLabel userLabel = new JLabel("Usuario");
         userLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         userLabel.setForeground(new Color(100, 100, 100));
@@ -170,7 +146,7 @@ public class Login extends JFrame {
         gbc.insets = new Insets(0, 0, 15, 0);
         formPanel.add(usuarioField, gbc);
         
-        // Campo de contraseña
+        // campo password
         JLabel passwordLabel = new JLabel("Contrasena");
         passwordLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         passwordLabel.setForeground(new Color(100, 100, 100));
@@ -196,7 +172,7 @@ public class Login extends JFrame {
         gbc.insets = new Insets(0, 0, 25, 0);
         formPanel.add(passwordField, gbc);
         
-        // Botón de login
+        //boton iniciar sesion
         loginButton = new JButton("Iniciar Sesión");
         loginButton.setFont(new Font("Arial", Font.BOLD, 14));
         loginButton.setForeground(Color.WHITE);
@@ -205,7 +181,7 @@ public class Login extends JFrame {
         loginButton.setFocusPainted(false);
         loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
-        // Efecto hover
+        // efecto hover cuando se presiona el iniciar sesion
         loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 loginButton.setBackground(new Color(120, 120, 120));
@@ -221,7 +197,7 @@ public class Login extends JFrame {
         gbc.insets = new Insets(0, 0, 10, 0);
         formPanel.add(loginButton, gbc);
         
-        // Botón de registro
+        // boton para ir al menu de registro
         registerButton = new JButton("Registrarse");
         registerButton.setFont(new Font("Arial", Font.PLAIN, 12));
         registerButton.setForeground(new Color(100, 100, 100));
@@ -233,7 +209,7 @@ public class Login extends JFrame {
         registerButton.setFocusPainted(false);
         registerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
-        // Efecto hover para registro
+        // hover
         registerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 registerButton.setBackground(new Color(245, 245, 245));
@@ -249,7 +225,7 @@ public class Login extends JFrame {
         gbc.insets = new Insets(0, 0, 0, 0);
         formPanel.add(registerButton, gbc);
         
-        // Agregar funcionalidad al botón de login
+        // listener para agregar funcion la boton de inicio sesion
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -257,7 +233,7 @@ public class Login extends JFrame {
             }
         });
         
-        // Agregar funcionalidad al botón de registro
+        // listener para agregar funcion la boton de registrar
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -265,10 +241,10 @@ public class Login extends JFrame {
             }
         });
         
-        // Permitir login con Enter
+        // ingresar al presionar enter
         getRootPane().setDefaultButton(loginButton);
         
-        // Agregar el panel del formulario al contenedor
+        // agregar el panel del formulario al contenedor
         GridBagConstraints containerGbc = new GridBagConstraints();
         containerGbc.gridx = 0;
         containerGbc.gridy = 0;
@@ -287,17 +263,17 @@ public class Login extends JFrame {
             return;
         }
         
-        // Mostrar loader
+        // mostrar loader
         loginButton.setText("Iniciando...");
         loginButton.setEnabled(false);
         
-        // Simular un pequeño delay para el efecto de carga
+    
         SwingUtilities.invokeLater(() -> {
             Usuario usuario = repositorioUsuarios.autenticar(username, password);
             
             if (usuario != null) {
                 usuarioLogueado = usuario;
-                // Cerrar ventana de login y abrir menú principal
+                // cerrar ventana de login pra abrir menu principal
                 abrirMenuPrincipal();
             } else {
                 mostrarError("Usuario o contraseña incorrectos");
@@ -313,21 +289,13 @@ public class Login extends JFrame {
     }
     
     private void abrirMenuPrincipal() {
-        // Cerrar ventana de login
+        // cerrar login
         dispose();
         
-        // Abrir menú principal (asumiendo que existe)
+        // abrir principal
         SwingUtilities.invokeLater(() -> {
-            try {
-                MenuPrincipal menuPrincipal = new MenuPrincipal(usuarioLogueado);
-                menuPrincipal.setVisible(true);
-            } catch (Exception e) {
-                // Si no existe MenuPrincipal, mostrar mensaje
-                JOptionPane.showMessageDialog(null, 
-                    "Login exitoso para: " + usuarioLogueado.getNombre() + " (" + usuarioLogueado.getRol() + ")", 
-                    "Bienvenido", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            }
+            MenuPrincipal menuPrincipal = new MenuPrincipal(usuarioLogueado);
+            menuPrincipal.setVisible(true);
         });
     }
     
@@ -341,7 +309,7 @@ public class Login extends JFrame {
     }
     
     /**
-     * Diálogo para registro de nuevos usuarios
+     * dialogo para registro usuarios
      */
     private static class RegistroDialog extends JDialog {
         private JTextField usernameField;
@@ -369,7 +337,7 @@ public class Login extends JFrame {
             
             GridBagConstraints gbc = new GridBagConstraints();
             
-            // Título
+            // titulo
             JLabel titleLabel = new JLabel("Registro de Usuario");
             titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
             titleLabel.setForeground(new Color(70, 70, 70));
@@ -380,7 +348,7 @@ public class Login extends JFrame {
             gbc.anchor = GridBagConstraints.CENTER;
             mainPanel.add(titleLabel, gbc);
             
-            // Campo Username
+            // campo para username
             JLabel usernameLabel = new JLabel("Nombre de Usuario:");
             usernameLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             gbc.gridy = 1; gbc.gridwidth = 1;
@@ -399,7 +367,7 @@ public class Login extends JFrame {
             gbc.insets = new Insets(0, 0, 15, 0);
             mainPanel.add(usernameField, gbc);
             
-            // Campo Nombre completo
+            // campo para nombre
             JLabel nombreLabel = new JLabel("Nombre Completo:");
             nombreLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             gbc.gridy = 3; gbc.gridwidth = 1;
@@ -418,7 +386,7 @@ public class Login extends JFrame {
             gbc.insets = new Insets(0, 0, 15, 0);
             mainPanel.add(nombreField, gbc);
             
-            // Campo Rol
+            //campo para el
             JLabel rolLabel = new JLabel("Rol:");
             rolLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             gbc.gridy = 5; gbc.gridwidth = 1;
@@ -434,7 +402,7 @@ public class Login extends JFrame {
             gbc.insets = new Insets(0, 0, 15, 0);
             mainPanel.add(rolComboBox, gbc);
             
-            // Campo Contraseña
+            // campo para password
             JLabel passwordLabel = new JLabel("Contraseña:");
             passwordLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             gbc.gridy = 7; gbc.gridwidth = 1;
@@ -453,7 +421,7 @@ public class Login extends JFrame {
             gbc.insets = new Insets(0, 0, 15, 0);
             mainPanel.add(passwordField, gbc);
             
-            // Campo Confirmar Contraseña
+            //campo para confirmar password
             JLabel confirmPasswordLabel = new JLabel("Confirmar Contraseña:");
             confirmPasswordLabel.setFont(new Font("Arial", Font.PLAIN, 12));
             gbc.gridy = 9; gbc.gridwidth = 1;
@@ -472,7 +440,7 @@ public class Login extends JFrame {
             gbc.insets = new Insets(0, 0, 20, 0);
             mainPanel.add(confirmPasswordField, gbc);
             
-            // Panel de botones
+            // botones
             JPanel buttonPanel = new JPanel(new FlowLayout());
             buttonPanel.setBackground(Color.WHITE);
             
@@ -517,7 +485,7 @@ public class Login extends JFrame {
             String confirmPassword = new String(confirmPasswordField.getPassword());
             String rol = (String) rolComboBox.getSelectedItem();
             
-            // Validaciones
+            // validar
             if (username.isEmpty() || nombre.isEmpty() || password.isEmpty()) {
                 mostrarError("Todos los campos son obligatorios");
                 return;
@@ -538,13 +506,13 @@ public class Login extends JFrame {
                 return;
             }
             
-            // Verificar si el usuario ya existe
+            // verificar si el usuario ya existe
             if (repositorioUsuarios.buscarPorUsername(username) != null) {
                 mostrarError("El nombre de usuario ya existe");
                 return;
             }
             
-            // Crear y guardar usuario
+            // crear y guardar usuario
             Usuario nuevoUsuario = new Usuario(username, password, nombre, rol);
             boolean exito = repositorioUsuarios.agregarUsuario(nuevoUsuario);
             

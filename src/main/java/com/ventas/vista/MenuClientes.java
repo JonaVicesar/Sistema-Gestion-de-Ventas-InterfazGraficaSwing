@@ -1,5 +1,6 @@
 package com.ventas.vista;
 
+import com.ventas.util.RoundedBorder;
 import com.ventas.controlador.ControladorCliente;
 import com.ventas.modelo.Cliente;
 
@@ -22,20 +23,22 @@ public class MenuClientes extends JFrame {
     private JPanel panelPrincipal;
     private JPanel panelIzquierdo;
     private JPanel panelDerecho;
-    private JLabel lblTotal; // Agregamos referencia para actualizar dinámicamente
+    private JLabel lblTotal;
 
-    // Colores del tema
-    private final Color COLOR_FONDO = new Color(45, 45, 45);
-    private final Color COLOR_PANEL = new Color(60, 60, 60);
-    private final Color COLOR_BOTON = new Color(80, 80, 80);
-    private final Color COLOR_BOTON_HOVER = new Color(100, 100, 100);
+    // colores del program
+    private final Color COLOR_ACENTO = new Color(255, 193, 7);
+    private final Color COLOR_FONDO_CLARO = new Color(250, 250, 250);
+    private final Color COLOR_FONDO = new Color(37, 37, 37);
+    private final Color COLOR_PANEL = new Color(50, 50, 50);
+    private final Color COLOR_BOTON = new Color(33, 150, 243);
+    private final Color COLOR_BOTON_HOVER = new Color(66, 165, 245);
     private final Color COLOR_TEXTO = Color.WHITE;
     private final Color COLOR_BUSQUEDA = new Color(70, 70, 70);
-    private final Color COLOR_TABLA_HEADER = new Color(70, 70, 90);
-    private final Color COLOR_TABLA_ROW1 = new Color(50, 50, 60);
-    private final Color COLOR_TABLA_ROW2 = new Color(45, 45, 55);
+    private final Color COLOR_TABLA_HEADER = new Color(25, 118, 210);
+    private final Color COLOR_TABLA_ROW1 = new Color(45, 45, 45);
+    private final Color COLOR_TABLA_ROW2 = new Color(40, 40, 40);
 
-    // Formateador de fechas
+    //formateador de fechas
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final Random random = new Random();
     private final MenuPrincipal menuPrincipal;
@@ -49,12 +52,12 @@ public class MenuClientes extends JFrame {
     }
 
     private void inicializarComponentes() {
-        // Panel principal con fondo
+        // panel principal
         panelPrincipal = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Fondo degradado
+                // degradado
                 Graphics2D g2d = (Graphics2D) g;
                 g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
                 GradientPaint gradient = new GradientPaint(0, 0, COLOR_FONDO,
@@ -65,18 +68,13 @@ public class MenuClientes extends JFrame {
         };
         panelPrincipal.setLayout(new BorderLayout());
 
-        // Header con título y logo
+      
         crearHeader();
-
-        // Panel central
         JPanel panelCentral = new JPanel(new BorderLayout());
         panelCentral.setOpaque(false);
+        crearPanelIzquierdo();//opciones
 
-        // Panel izquierdo - Menú de opciones
-        crearPanelIzquierdo();
-
-        // Panel derecho - Tabla de clientes
-        crearPanelDerecho();
+        crearPanelDerecho();//tabla de clientes
 
         panelCentral.add(panelIzquierdo, BorderLayout.WEST);
         panelCentral.add(panelDerecho, BorderLayout.CENTER);
@@ -95,7 +93,7 @@ public class MenuClientes extends JFrame {
         header.setBackground(new Color(35, 35, 35));
         header.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
 
-        // Logo y título
+        //titulo
         JPanel tituloPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         tituloPanel.setOpaque(false);
 
@@ -113,12 +111,15 @@ public class MenuClientes extends JFrame {
 
         header.add(tituloPanel, BorderLayout.WEST);
 
-        // Botón para volver al menú principal
-        JButton btnVolver = new JButton("← Volver");
-        btnVolver.setFont(new Font("Arial", Font.PLAIN, 14));
+        //boton para el volver al menu principal
+        JButton btnVolver = new JButton("Volver al Inicio");
+        btnVolver.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         btnVolver.setForeground(COLOR_TEXTO);
         btnVolver.setBackground(COLOR_BOTON);
-        btnVolver.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        btnVolver.setBorder(BorderFactory.createCompoundBorder(
+                new RoundedBorder(6),
+                BorderFactory.createEmptyBorder(8, 15, 8, 15)
+        ));
         btnVolver.addActionListener(e -> volverAlMenuPrincipal());
 
         header.add(btnVolver, BorderLayout.EAST);
@@ -133,30 +134,28 @@ public class MenuClientes extends JFrame {
         panelIzquierdo.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelIzquierdo.setPreferredSize(new Dimension(250, 0));
 
-        // Título del menú
+        // titulo
         JLabel tituloMenu = new JLabel("Gestión de Clientes");
         tituloMenu.setFont(new Font("Arial", Font.BOLD, 20));
         tituloMenu.setForeground(COLOR_TEXTO);
         tituloMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
         tituloMenu.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
 
-        // Estadísticas - Usando controlador
+        // cantidad de clientes
         lblTotal = new JLabel("Total: " + controladorCliente.cantidadClientes() + " clientes");
         lblTotal.setForeground(COLOR_TEXTO);
         lblTotal.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblTotal.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 
-        // Botones del menú
+        // botones
         JButton btnCrear = crearBotonMenu("Nuevo Cliente");
         JButton btnEditar = crearBotonMenu("Editar Cliente");
         JButton btnEliminar = crearBotonMenu("Eliminar Cliente");
-        JButton btnExportar = crearBotonMenu("Exportar a Excel");
 
-        // Eventos de botones
+        // listeners para los botones
         btnCrear.addActionListener(e -> mostrarDialogoCrearCliente());
         btnEditar.addActionListener(e -> editarClienteSeleccionado());
         btnEliminar.addActionListener(e -> eliminarClienteSeleccionado());
-        btnExportar.addActionListener(e -> exportarAExcel());
 
         panelIzquierdo.add(tituloMenu);
         panelIzquierdo.add(lblTotal);
@@ -166,7 +165,6 @@ public class MenuClientes extends JFrame {
         panelIzquierdo.add(Box.createVerticalStrut(15));
         panelIzquierdo.add(btnEliminar);
         panelIzquierdo.add(Box.createVerticalStrut(15));
-        panelIzquierdo.add(btnExportar);
         panelIzquierdo.add(Box.createVerticalGlue());
     }
 
@@ -184,7 +182,7 @@ public class MenuClientes extends JFrame {
         boton.setMaximumSize(new Dimension(200, 45));
         boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Efecto hover
+        //hover
         boton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -205,7 +203,7 @@ public class MenuClientes extends JFrame {
         panelDerecho.setOpaque(false);
         panelDerecho.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Panel de búsqueda
+        //barra de busqueda
         JPanel panelBusqueda = new JPanel(new BorderLayout(10, 0));
         panelBusqueda.setOpaque(false);
 
@@ -228,8 +226,8 @@ public class MenuClientes extends JFrame {
             }
         });
 
-        // Botón de búsqueda con ícono
-        JButton btnBuscar = new JButton("🔍");
+        // boton de buscar
+        JButton btnBuscar = new JButton("Buscar");
         btnBuscar.setBackground(COLOR_BOTON);
         btnBuscar.setForeground(COLOR_TEXTO);
         btnBuscar.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
@@ -239,7 +237,40 @@ public class MenuClientes extends JFrame {
         panelBusqueda.add(campoBusqueda, BorderLayout.CENTER);
         panelBusqueda.add(btnBuscar, BorderLayout.EAST);
 
-        // Tabla de clientes
+        //panel de ordenamiento
+        JPanel panelOrdenamiento = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelOrdenamiento.setOpaque(false);
+
+        JLabel lblOrdenar = new JLabel("Ordenar por:");
+        lblOrdenar.setForeground(COLOR_TEXTO);
+        lblOrdenar.setFont(new Font("Arial", Font.BOLD, 12));
+
+        JButton btnOrdenarNombre = new JButton("Nombre");
+        JButton btnOrdenarDocumento = new JButton("Documento");
+        JButton btnOrdenarEdad = new JButton("Edad");
+
+       // estilo de botones
+        JButton[] botonesOrden = {btnOrdenarNombre, btnOrdenarDocumento, btnOrdenarEdad};
+        for (JButton btn : botonesOrden) {
+            btn.setFont(new Font("Arial", Font.PLAIN, 11));
+            btn.setForeground(COLOR_TEXTO);
+            btn.setBackground(COLOR_BOTON);
+            btn.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+            btn.setFocusPainted(false);
+            btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
+
+       // listeners para los botones de ordenamiento
+        btnOrdenarNombre.addActionListener(e -> ordenarTabla("nombre"));
+        btnOrdenarDocumento.addActionListener(e -> ordenarTabla("documento"));
+        btnOrdenarEdad.addActionListener(e -> ordenarTabla("edad"));
+
+        panelOrdenamiento.add(lblOrdenar);
+        panelOrdenamiento.add(btnOrdenarNombre);
+        panelOrdenamiento.add(btnOrdenarDocumento);
+        panelOrdenamiento.add(btnOrdenarEdad);
+
+        //tabla de clientes
         String[] columnas = {"Nombre", "Documento", "Edad", "Método de Pago", "Última Compra"};
         modeloTabla = new DefaultTableModel(columnas, 0) {
             @Override
@@ -249,12 +280,10 @@ public class MenuClientes extends JFrame {
         };
 
         tablaClientes = new JTable(modeloTabla) {
-            // Renderizado personalizado para la tabla
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component comp = super.prepareRenderer(renderer, row, column);
-
-                // Resaltar fila seleccionada
+                //
                 if (isRowSelected(row)) {
                     comp.setBackground(COLOR_BOTON_HOVER);
                     comp.setForeground(COLOR_TEXTO);
@@ -267,7 +296,7 @@ public class MenuClientes extends JFrame {
             }
         };
 
-        // Configuración adicional de la tabla
+        //ajustes en la tabla
         tablaClientes.setRowHeight(35);
         tablaClientes.getTableHeader().setBackground(COLOR_TABLA_HEADER);
         tablaClientes.getTableHeader().setForeground(COLOR_TEXTO);
@@ -278,18 +307,31 @@ public class MenuClientes extends JFrame {
         tablaClientes.setShowGrid(true);
         tablaClientes.setAutoCreateRowSorter(true);
 
-        // Personalizar el renderizado de las celdas
+        
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        tablaClientes.getColumnModel().getColumn(1).setCellRenderer(centerRenderer); // Documento
-        tablaClientes.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); // Edad
-        tablaClientes.getColumnModel().getColumn(4).setCellRenderer(centerRenderer); // Última Compra
+        tablaClientes.getColumnModel().getColumn(1).setCellRenderer(centerRenderer); // documento
+        tablaClientes.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); // edad
+        tablaClientes.getColumnModel().getColumn(4).setCellRenderer(centerRenderer); // ultima Compra
 
+        //
+        tablaClientes.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                mostrarDetallesClienteSeleccionado();
+            }
+        });
+
+        ///ACAA  
         JScrollPane scrollPane = new JScrollPane(tablaClientes);
         scrollPane.getViewport().setBackground(COLOR_PANEL);
         scrollPane.setBorder(BorderFactory.createLineBorder(COLOR_BOTON, 1));
 
-        panelDerecho.add(panelBusqueda, BorderLayout.NORTH);
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        panelSuperior.setOpaque(false);
+        panelSuperior.add(panelBusqueda, BorderLayout.NORTH);
+        panelSuperior.add(panelOrdenamiento, BorderLayout.SOUTH);
+
+        panelDerecho.add(panelSuperior, BorderLayout.NORTH);
         panelDerecho.add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -302,14 +344,12 @@ public class MenuClientes extends JFrame {
 
     private void cargarDatos() {
         modeloTabla.setRowCount(0);
-        // Usando controlador en lugar de repositorio directo
         List<Cliente> clientes = controladorCliente.listaClientes();
 
         for (Cliente cliente : clientes) {
             agregarFilaTabla(cliente);
         }
-        
-        // Actualizar contador
+
         actualizarContadorClientes();
     }
 
@@ -319,24 +359,23 @@ public class MenuClientes extends JFrame {
 
         List<Cliente> clientes;
         if (filtro.isEmpty()) {
-            // Obtener todos los clientes a través del controlador
             clientes = controladorCliente.listaClientes();
         } else {
-            // Buscar por nombre usando el método específico del controlador
+            // 
             clientes = controladorCliente.buscarClientesPorNombre(filtro);
-            
-            // También buscar por documento si el filtro es numérico
+
+            // buscar por numero de documento si se ingresa un numero
             try {
                 int documento = Integer.parseInt(filtro);
                 Cliente clientePorDocumento = controladorCliente.buscarClientePorDocumento(documento);
                 if (clientePorDocumento != null) {
-                    // Evitar duplicados
+ 
                     if (!clientes.contains(clientePorDocumento)) {
                         clientes.add(clientePorDocumento);
                     }
                 }
             } catch (NumberFormatException e) {
-                // No es un número, solo buscar por nombre
+                
             }
         }
 
@@ -346,8 +385,7 @@ public class MenuClientes extends JFrame {
     }
 
     private void agregarFilaTabla(Cliente cliente) {
-        // Generar fecha aleatoria para la última compra (simulación)
-        LocalDate ultimaCompra = LocalDate.now().minusDays(random.nextInt(30));
+        LocalDate ultimaCompra = LocalDate.now();
 
         Object[] fila = {
             cliente.getNombreCompleto(),
@@ -359,11 +397,43 @@ public class MenuClientes extends JFrame {
         modeloTabla.addRow(fila);
     }
 
+    private void ordenarTabla(String criterio) {
+        List<Cliente> clientes = controladorCliente.listaClientes();
+
+        // Aplicar filtro si existe
+        String filtro = campoBusqueda.getText().trim();
+        if (!filtro.isEmpty()) {
+            clientes = clientes.stream()
+                    .filter(c -> c.getNombreCompleto().toLowerCase().contains(filtro.toLowerCase())
+                    || String.valueOf(c.getDocumento()).contains(filtro))
+                    .collect(java.util.stream.Collectors.toList());
+        }
+
+        // ordenar la tabla con comparator
+        switch (criterio) {
+            case "nombre":
+                clientes.sort(java.util.Comparator.comparing(Cliente::getNombreCompleto));
+                break;
+            case "documento":
+                clientes.sort(java.util.Comparator.comparing(Cliente::getDocumento));
+                break;
+            case "edad":
+                clientes.sort(java.util.Comparator.comparing(Cliente::getEdad));
+                break;
+        }
+
+        // actualizar la tabla
+        modeloTabla.setRowCount(0);
+        for (Cliente cliente : clientes) {
+            agregarFilaTabla(cliente);
+        }
+    }
+
     private void mostrarDialogoCrearCliente() {
         FormularioClienteDialog dialog = new FormularioClienteDialog(this, controladorCliente, null);
         dialog.setVisible(true);
         if (dialog.isGuardado()) {
-            cargarDatos(); // Recargar datos después de crear
+            cargarDatos(); 
         }
     }
 
@@ -382,10 +452,10 @@ public class MenuClientes extends JFrame {
         if (confirmacion == JOptionPane.YES_OPTION) {
             int documento = (Integer) modeloTabla.getValueAt(filaSeleccionada, 1);
             try {
-                // Usar controlador para eliminar
+                
                 boolean eliminado = controladorCliente.eliminarCliente(documento);
                 if (eliminado) {
-                    cargarDatos(); // Recargar datos
+                    cargarDatos(); 
                     JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al eliminar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -404,32 +474,52 @@ public class MenuClientes extends JFrame {
         }
 
         int documento = (Integer) modeloTabla.getValueAt(filaSeleccionada, 1);
-        // Usar controlador para obtener el cliente
+        
         Cliente cliente = controladorCliente.obtenerCliente(documento);
 
         if (cliente != null) {
             FormularioClienteDialog dialog = new FormularioClienteDialog(this, controladorCliente, cliente);
             dialog.setVisible(true);
             if (dialog.isGuardado()) {
-                cargarDatos(); // Recargar datos después de editar
+                cargarDatos(); 
             }
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo encontrar el cliente seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void actualizarContadorClientes() {
-        // Actualizar el contador usando el controlador
         lblTotal.setText("Total: " + controladorCliente.cantidadClientes() + " clientes");
     }
 
-    private void exportarAExcel() {
-        // Implementación básica - Por completar
-        JOptionPane.showMessageDialog(this, "Exportando datos a Excel...");
-        // Aquí iría la lógica para exportar usando el controlador
+    private void mostrarDetallesClienteSeleccionado() {
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            return;
+        }
+
+        int documento = (Integer) modeloTabla.getValueAt(filaSeleccionada, 1);
+        Cliente cliente = controladorCliente.obtenerCliente(documento);
+
+        if (cliente != null) {
+            StringBuilder detalles = new StringBuilder();
+            detalles.append("=== INFORMACIÓN COMPLETA DEL CLIENTE ===\n\n");
+            detalles.append("Nombre: ").append(cliente.getNombreCompleto()).append("\n");
+            detalles.append("Documento: ").append(cliente.getDocumento()).append("\n");
+            detalles.append("Edad: ").append(cliente.getEdad()).append(" años\n");
+            detalles.append("Teléfono: ").append(cliente.getTelefono()).append("\n");
+            detalles.append("Método de Pago: ").append(cliente.getMetodoPago()).append("\n");
+
+            if ("TARJETA".equals(cliente.getMetodoPago()) && cliente.getTarjeta() != null) {
+                detalles.append("Número de Tarjeta: ").append(cliente.getTarjeta()).append("\n");
+            }
+
+            JOptionPane.showMessageDialog(this, detalles.toString(),
+                    "Detalles del Cliente", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
-    // Clase interna para el formulario de cliente
+    // clase interna para crear y editar clientes
     private static class FormularioClienteDialog extends JDialog {
 
         private final ControladorCliente controlador;
@@ -456,7 +546,7 @@ public class MenuClientes extends JFrame {
             JPanel panel = new JPanel(new GridLayout(0, 1, 10, 10));
             panel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-            // Campos del formulario
+            //datos del formulario
             txtNombre = new JTextField();
             txtDocumento = new JTextField();
             txtEdad = new JTextField();
@@ -464,7 +554,7 @@ public class MenuClientes extends JFrame {
             cmbMetodoPago = new JComboBox<>(new String[]{"EFECTIVO", "TARJETA"});
             txtTarjeta = new JTextField();
 
-            // Si estamos editando, cargar datos existentes
+            //cargar datos al editar
             if (cliente != null) {
                 txtNombre.setText(cliente.getNombreCompleto());
                 txtDocumento.setText(String.valueOf(cliente.getDocumento()));
@@ -475,15 +565,15 @@ public class MenuClientes extends JFrame {
                 txtTarjeta.setText(cliente.getTarjeta() != null ? cliente.getTarjeta() : "");
             }
 
-            // Listener para método de pago
+            
             cmbMetodoPago.addActionListener(e -> {
                 txtTarjeta.setEnabled("TARJETA".equals(cmbMetodoPago.getSelectedItem()));
             });
 
-            // Habilitar/deshabilitar tarjeta según método
+            
             txtTarjeta.setEnabled("TARJETA".equals(cmbMetodoPago.getSelectedItem()));
 
-            // Agregar campos al panel
+            //agregar al panel
             panel.add(new JLabel("Nombre Completo:"));
             panel.add(txtNombre);
             panel.add(new JLabel("Documento:"));
@@ -497,7 +587,7 @@ public class MenuClientes extends JFrame {
             panel.add(new JLabel("Número de Tarjeta:"));
             panel.add(txtTarjeta);
 
-            // Botones
+          
             JButton btnGuardar = new JButton("Guardar");
             btnGuardar.addActionListener(e -> guardarCliente());
 
@@ -522,38 +612,30 @@ public class MenuClientes extends JFrame {
                 String tarjeta = txtTarjeta.getText().trim();
 
                 if (cliente == null) {
-                    // Crear nuevo cliente usando el controlador
+                    // agregar cliente
                     if (metodoPago.equals("TARJETA")) {
                         controlador.agregarCliente(nombre, edad, documento, telefono, metodoPago, tarjeta);
                     } else {
                         controlador.agregarCliente(nombre, edad, documento, telefono, metodoPago);
                     }
                 } else {
-                    // Editar cliente existente usando métodos del controlador
-                    boolean exitoso = true;
                     
-                    // Editar nombre si cambió
+                    boolean exitoso = true;
                     if (!cliente.getNombreCompleto().equals(nombre)) {
                         exitoso = controlador.editarNombre(nombre, documento);
                     }
-                    
-                    // Editar teléfono si cambió
                     if (exitoso && !cliente.getTelefono().equals(telefono)) {
                         exitoso = controlador.editarTelefono(telefono, documento);
                     }
-                    
-                    // Editar método de pago si cambió
-                    if (exitoso && (!metodoPago.equals(cliente.getMetodoPago()) || 
-                        !tarjeta.equals(cliente.getTarjeta() != null ? cliente.getTarjeta() : ""))) {
-                        exitoso = controlador.editarMetodoPago(documento, metodoPago, 
-                                  metodoPago.equals("TARJETA") ? tarjeta : null);
+                    if (exitoso && (!metodoPago.equals(cliente.getMetodoPago())
+                            || !tarjeta.equals(cliente.getTarjeta() != null ? cliente.getTarjeta() : ""))) {
+                        exitoso = controlador.editarMetodoPago(documento, metodoPago,
+                                metodoPago.equals("TARJETA") ? tarjeta : null);
                     }
-                    
-                    // Actualizar edad directamente en el objeto (si no hay método en el controlador)
                     if (exitoso && cliente.getEdad() != edad) {
                         cliente.setEdad(edad);
                     }
-                    
+
                     if (!exitoso) {
                         throw new RuntimeException("Error al actualizar el cliente");
                     }
@@ -561,7 +643,7 @@ public class MenuClientes extends JFrame {
 
                 guardado = true;
                 dispose();
-                
+
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Edad y documento deben ser números válidos", "Error", JOptionPane.ERROR_MESSAGE);
             } catch (IllegalArgumentException e) {

@@ -386,7 +386,7 @@
     ],
     "fecha": "2025-06-01",
     "total": 9.0,
-    "anulada": false
+    "anulada": true
   },
   {
     "idVenta": 14,
@@ -541,6 +541,113 @@
     ],
     "fecha": "2025-06-01",
     "total": 10.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 20,
+    "cliente": {
+      "nombreCompleto": "Novak Djokovic",
+      "metodoPago": "EFECTIVO",
+      "edad": 40,
+      "documento": 5908897,
+      "telefono": "0987844123"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Fanta",
+          "id": 5,
+          "precio": 10.0,
+          "cantidad": 232
+        },
+        "cantidad": 2
+      }
+    ],
+    "fecha": "2025-06-02",
+    "total": 20.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 21,
+    "cliente": {
+      "nombreCompleto": "Carlos Alcaraz",
+      "metodoPago": "EFECTIVO",
+      "edad": 21,
+      "documento": 4787905,
+      "telefono": "0989123243"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Pringles",
+          "id": 1,
+          "precio": 14.0,
+          "cantidad": 996
+        },
+        "cantidad": 4
+      }
+    ],
+    "fecha": "2025-06-02",
+    "total": 56.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 22,
+    "cliente": {
+      "nombreCompleto": "Robert Lewandowski",
+      "metodoPago": "TARJETA",
+      "tarjeta": "12345678890124",
+      "edad": 36,
+      "documento": 77886699,
+      "telefono": "0978664832"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Cerveza Pilsen",
+          "id": 10,
+          "precio": 9.0,
+          "cantidad": 391
+        },
+        "cantidad": 2
+      },
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 487
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-06-02",
+    "total": 27.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 23,
+    "cliente": {
+      "nombreCompleto": "Julio Enciso",
+      "metodoPago": "TARJETA",
+      "tarjeta": "98125437658349",
+      "edad": 21,
+      "documento": 55648989,
+      "telefono": "098787878"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 487
+        },
+        "cantidad": 4
+      }
+    ],
+    "fecha": "2025-06-02",
+    "total": 12.0,
     "anulada": false
   }
 ]

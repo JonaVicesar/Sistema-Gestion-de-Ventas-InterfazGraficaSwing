@@ -38,7 +38,7 @@ public class VentasApp {
         Producto tomate = new Producto("Pringles", 14, 1000, 15);
         prod.put(tomate, 5);*/
         
-        RepositorioCliente g = new RepositorioCliente();
+        RepositorioCliente g = new RepositorioCliente();    
         RepositorioProductos k = new RepositorioProductos();
         RepositorioVentas h = new RepositorioVentas();
         //h.crearVenta(yo, prod, LocalDate.EPOCH);
@@ -48,14 +48,14 @@ public class VentasApp {
         //System.out.println("Hola mundo");
         //System.out.println(g.getCliente(5756832).getEdad());
         
-     //  MenuPrincipal menu = new MenuPrincipal();
-      // menu.setVisible(true);
+     // MenuPrincipal menu = new MenuPrincipal();
+       //menu.setVisible(true);
        //MenuClientes cliente = new MenuClientes();
        //cliente.setVisible(true);
        //MenuProductos p = new MenuProductos();
        //p.setVisible(true);
        
-    Login nuevo = new Login();
+   Login nuevo = new Login();
    nuevo.setVisible(true);   
     }
 }

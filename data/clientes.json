@@ -15,6 +15,14 @@
     "telefono": "0987888999"
   },
   {
+    "nombreCompleto": "Taylor Swift",
+    "metodoPago": "TARJETA",
+    "tarjeta": "78901264535623",
+    "edad": 35,
+    "documento": 6784932,
+    "telefono": "0987636721"
+  },
+  {
     "nombreCompleto": "Derlis Gonzalez",
     "metodoPago": "EFECTIVO",
     "edad": 31,
@@ -117,6 +125,13 @@
     "edad": 37,
     "documento": 445566779,
     "telefono": "0987878789"
+  },
+  {
+    "nombreCompleto": "Miguel Almiron",
+    "metodoPago": "EFECTIVO",
+    "edad": 31,
+    "documento": 5432999,
+    "telefono": "0987123412"
   },
   {
     "nombreCompleto": "Jonathan",

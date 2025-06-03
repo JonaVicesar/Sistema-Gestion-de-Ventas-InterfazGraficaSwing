@@ -3,13 +3,13 @@
     "nombre": "Cerveza Pilsen",
     "id": 10,
     "precio": 9.0,
-    "cantidad": 393
+    "cantidad": 391
   },
   {
     "nombre": "Takis",
     "id": 3,
     "precio": 3.0,
-    "cantidad": 494
+    "cantidad": 487
   },
   {
     "nombre": "Fortin Etiqueta Negra",
@@ -33,7 +33,7 @@
     "nombre": "Fanta",
     "id": 5,
     "precio": 10.0,
-    "cantidad": 234
+    "cantidad": 232
   },
   {
     "nombre": "Jugo Zuko",
@@ -60,9 +60,15 @@
     "cantidad": 400
   },
   {
+    "nombre": "Fernet-Branca",
+    "id": 12,
+    "precio": 14.0,
+    "cantidad": 444
+  },
+  {
     "nombre": "Pringles",
     "id": 1,
     "precio": 14.0,
-    "cantidad": 1000
+    "cantidad": 996
   }
 ]

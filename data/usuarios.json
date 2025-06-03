@@ -1,1 +1,32 @@
-[{"username":"admin","password":"admin123","nombre":"Administrador del Sistema","rol":"ADMIN"},{"username":"vendedor","password":"venta123","nombre":"Juan Pérez","rol":"VENDEDOR"},{"username":"cajero","password":"caja123","nombre":"María González","rol":"CAJERO"},{"username":"jona","password":"12345","nombre":"Jonathan Vicesar","rol":"ADMIN"},{"username":"Nathan","password":"4321","nombre":"Nathan BlaBla","rol":"VENDEDOR"},{"username":"regi","password":"54321","nombre":"Reginald Rose","rol":"ADMIN"}]
+[
+  {
+    "username": "admin",
+    "password": "admin123",
+    "nombre": "Administrador del Sistema",
+    "rol": "ADMIN"
+  },
+  {
+    "username": "vendedor",
+    "password": "venta123",
+    "nombre": "Juan Pérez",
+    "rol": "VENDEDOR"
+  },
+  {
+    "username": "cajero",
+    "password": "caja123",
+    "nombre": "María González",
+    "rol": "CAJERO"
+  },
+  {
+    "username": "jona",
+    "password": "12345",
+    "nombre": "Jonathan Vicesar",
+    "rol": "ADMIN"
+  },
+  {
+    "username": "nathan",
+    "password": "4321",
+    "nombre": "Nathan BlaBla",
+    "rol": "VENDEDOR"
+  }
+]
