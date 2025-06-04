@@ -55,7 +55,7 @@
     ],
     "fecha": "2025-06-01",
     "total": 800.0,
-    "anulada": false
+    "anulada": true
   },
   {
     "idVenta": 3,
@@ -164,7 +164,7 @@
     ],
     "fecha": "2025-05-31",
     "total": 9.0,
-    "anulada": false
+    "anulada": true
   },
   {
     "idVenta": 6,
@@ -435,7 +435,7 @@
     ],
     "fecha": "2025-06-01",
     "total": 18.0,
-    "anulada": false
+    "anulada": true
   },
   {
     "idVenta": 16,
@@ -604,21 +604,21 @@
     "listaCompras": [
       {
         "producto": {
-          "nombre": "Cerveza Pilsen",
-          "id": 10,
-          "precio": 9.0,
-          "cantidad": 391
-        },
-        "cantidad": 2
-      },
-      {
-        "producto": {
           "nombre": "Takis",
           "id": 3,
           "precio": 3.0,
           "cantidad": 487
         },
         "cantidad": 3
+      },
+      {
+        "producto": {
+          "nombre": "Cerveza Pilsen",
+          "id": 10,
+          "precio": 9.0,
+          "cantidad": 391
+        },
+        "cantidad": 2
       }
     ],
     "fecha": "2025-06-02",
@@ -648,6 +648,178 @@
     ],
     "fecha": "2025-06-02",
     "total": 12.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 24,
+    "cliente": {
+      "nombreCompleto": "Jonathan",
+      "metodoPago": "efectivo",
+      "edad": 16,
+      "documento": 5756832,
+      "telefono": "0987676767"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 484
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-06-03",
+    "total": 9.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 25,
+    "cliente": {
+      "nombreCompleto": "Novak Djokovic",
+      "metodoPago": "EFECTIVO",
+      "edad": 40,
+      "documento": 5908897,
+      "telefono": "0987844123"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Yes Yes",
+          "id": 2,
+          "precio": 0.55,
+          "cantidad": 994
+        },
+        "cantidad": 4
+      },
+      {
+        "producto": {
+          "nombre": "Fanta",
+          "id": 5,
+          "precio": 10.0,
+          "cantidad": 230
+        },
+        "cantidad": 2
+      },
+      {
+        "producto": {
+          "nombre": "Fernet-Branca",
+          "id": 12,
+          "precio": 14.0,
+          "cantidad": 426
+        },
+        "cantidad": 18
+      }
+    ],
+    "fecha": "2025-06-03",
+    "total": 274.2,
+    "anulada": false
+  },
+  {
+    "idVenta": 26,
+    "cliente": {
+      "nombreCompleto": "Neymar Junior",
+      "metodoPago": "EFECTIVO",
+      "edad": 32,
+      "documento": 2345888,
+      "telefono": "0987888999"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 479
+        },
+        "cantidad": 5
+      }
+    ],
+    "fecha": "2025-06-03",
+    "total": 15.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 27,
+    "cliente": {
+      "nombreCompleto": "Cristiano Ronaldo",
+      "metodoPago": "EFECTIVO",
+      "edad": 40,
+      "documento": 9000000,
+      "telefono": "09856768549"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Cerveza Brahma",
+          "id": 9,
+          "precio": 8.0,
+          "cantidad": 397
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-06-03",
+    "total": 24.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 28,
+    "cliente": {
+      "nombreCompleto": "Pablo Zeballos",
+      "metodoPago": "TARJETA",
+      "tarjeta": "56712345120941",
+      "edad": 45,
+      "documento": 2908777,
+      "telefono": "0988321654"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Fortin Etiqueta Negra",
+          "id": 6,
+          "precio": 6.0,
+          "cantidad": 295
+        },
+        "cantidad": 4
+      },
+      {
+        "producto": {
+          "nombre": "Ron Fortin Frutos Rojos",
+          "id": 11,
+          "precio": 9.0,
+          "cantidad": 143
+        },
+        "cantidad": 2
+      }
+    ],
+    "fecha": "2025-06-03",
+    "total": 42.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 29,
+    "cliente": {
+      "nombreCompleto": "Neymar Junior",
+      "metodoPago": "EFECTIVO",
+      "edad": 32,
+      "documento": 2345888,
+      "telefono": "0987888999"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Galletitas Tortuguita",
+          "id": 4,
+          "precio": 6.0,
+          "cantidad": 495
+        },
+        "cantidad": 5
+      }
+    ],
+    "fecha": "2025-06-03",
+    "total": 30.0,
     "anulada": false
   }
 ]

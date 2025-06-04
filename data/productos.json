@@ -9,31 +9,31 @@
     "nombre": "Takis",
     "id": 3,
     "precio": 3.0,
-    "cantidad": 487
+    "cantidad": 479
   },
   {
     "nombre": "Fortin Etiqueta Negra",
     "id": 6,
     "precio": 6.0,
-    "cantidad": 299
+    "cantidad": 295
   },
   {
     "nombre": "Galletitas Tortuguita",
     "id": 4,
     "precio": 6.0,
-    "cantidad": 500
+    "cantidad": 495
   },
   {
     "nombre": "Ron Fortin Frutos Rojos",
     "id": 11,
     "precio": 9.0,
-    "cantidad": 145
+    "cantidad": 143
   },
   {
     "nombre": "Fanta",
     "id": 5,
     "precio": 10.0,
-    "cantidad": 232
+    "cantidad": 230
   },
   {
     "nombre": "Jugo Zuko",
@@ -45,7 +45,7 @@
     "nombre": "Yes Yes",
     "id": 2,
     "precio": 0.55,
-    "cantidad": 998
+    "cantidad": 994
   },
   {
     "nombre": "Vino Tinto Uvita",
@@ -57,13 +57,13 @@
     "nombre": "Cerveza Brahma",
     "id": 9,
     "precio": 8.0,
-    "cantidad": 400
+    "cantidad": 397
   },
   {
     "nombre": "Fernet-Branca",
     "id": 12,
     "precio": 14.0,
-    "cantidad": 444
+    "cantidad": 426
   },
   {
     "nombre": "Pringles",

@@ -3,7 +3,7 @@ com\ventas\controlador\ControladorProducto.class
 com\ventas\modelo\Venta.class
 com\ventas\repositorio\RepositorioVentas$ProductoMapAdapter.class
 com\ventas\vista\MenuPrincipal$3.class
-com\ventas\vista\Login$RegistroDialog.class
+com\ventas\vista\RegistroDialog.class
 com\ventas\vista\MenuVentas$FormularioVentaDialog.class
 com\ventas\vista\Login$2.class
 com\ventas\vista\MenuClientes$3.class
@@ -44,10 +44,9 @@ com\ventas\vista\Login.class
 com\ventas\modelo\Producto.class
 com\ventas\vista\MenuVentas$2.class
 com\ventas\util\PathManager.class
-com\ventas\vista\LoaderDialog.class
 ventasswing\VentasSwing.class
 com\ventas\util\RoundedBorder.class
-com\ventas\vista\LoaderComponent.class
+com\ventas\vista\Loader.class
 com\ventas\repositorio\RepositorioCliente.class
 com\ventas\vista\MenuVentas$FormularioVentaDialog$1.class
 com\ventas\vista\MenuPrincipal$6.class

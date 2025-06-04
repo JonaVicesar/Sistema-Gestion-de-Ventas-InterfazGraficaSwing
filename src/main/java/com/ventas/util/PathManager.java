@@ -7,8 +7,8 @@ import java.io.File;
  * @author Jona Vicesar
  */
 public class PathManager {
-    private static final String DATA_DIRECTORY = "data";
-    private static final String RESOURCES_DIRECTORY = "src/main/java/com/ventas/util";
+    private static final String DIRECTORIO_PRINCIPAL = "data";
+    private static final String DIRECTORIO_UTIL = "src/main/java/com/ventas/util";
     
     /**
      * Obtiene la ruta completa para un archivo en el directorio data
@@ -16,7 +16,7 @@ public class PathManager {
      * @return ruta completa del archivo
      */
     public static String getDataPath(String filename) {
-        File dataDir = new File(DATA_DIRECTORY);
+        File dataDir = new File(DIRECTORIO_PRINCIPAL);
         if (!dataDir.exists()) {
             dataDir.mkdirs();
         }
@@ -29,7 +29,7 @@ public class PathManager {
      * @return ruta completa del recurso
      */
     public static String getResourcePath(String filename) {
-        return new File(RESOURCES_DIRECTORY, filename).getAbsolutePath();
+        return new File(DIRECTORIO_UTIL, filename).getAbsolutePath();
     }
     
     /**
@@ -54,7 +54,7 @@ public class PathManager {
      * Crea el directorio data si no existe
      */
     public static void ensureDataDirectoryExists() {
-        File dataDir = new File(DATA_DIRECTORY);
+        File dataDir = new File(DIRECTORIO_PRINCIPAL);
         if (!dataDir.exists()) {
             dataDir.mkdirs();
         }

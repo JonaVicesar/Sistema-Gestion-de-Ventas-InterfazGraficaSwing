@@ -1,13 +1,5 @@
 [
   {
-    "nombreCompleto": "Benito Martinez",
-    "metodoPago": "TARJETA",
-    "tarjeta": "12343456342312",
-    "edad": 29,
-    "documento": 5555444,
-    "telefono": "098778636"
-  },
-  {
     "nombreCompleto": "Neymar Junior",
     "metodoPago": "EFECTIVO",
     "edad": 32,
@@ -36,13 +28,6 @@
     "edad": 45,
     "documento": 2908777,
     "telefono": "0988321654"
-  },
-  {
-    "nombreCompleto": "Nenecho",
-    "metodoPago": "EFECTIVO",
-    "edad": 45,
-    "documento": 3333333,
-    "telefono": "0988762134"
   },
   {
     "nombreCompleto": "Carlos Alcaraz",
@@ -75,27 +60,12 @@
     "telefono": "0987676567"
   },
   {
-    "nombreCompleto": "Ramon Sosa",
-    "metodoPago": "EFECTIVO",
-    "edad": 27,
-    "documento": 4444333,
-    "telefono": "0987665544"
-  },
-  {
     "nombreCompleto": "Robert Lewandowski",
     "metodoPago": "TARJETA",
     "tarjeta": "12345678890124",
     "edad": 36,
     "documento": 77886699,
     "telefono": "0978664832"
-  },
-  {
-    "nombreCompleto": "Justin Bieber",
-    "metodoPago": "TARJETA",
-    "tarjeta": "12097986573456",
-    "edad": 30,
-    "documento": 8889768,
-    "telefono": "0987776655"
   },
   {
     "nombreCompleto": "Robert Downey Jr",
@@ -106,11 +76,77 @@
     "telefono": "0987879677"
   },
   {
+    "nombreCompleto": "Jonaa",
+    "metodoPago": "EFECTIVO",
+    "edad": 18,
+    "documento": 8980765,
+    "telefono": "0987787898"
+  },
+  {
+    "nombreCompleto": "Maluma",
+    "metodoPago": "EFECTIVO",
+    "edad": 32,
+    "documento": 5551112,
+    "telefono": "0987767676"
+  },
+  {
+    "nombreCompleto": "Benito Martinez",
+    "metodoPago": "TARJETA",
+    "tarjeta": "12343456342312",
+    "edad": 29,
+    "documento": 5555444,
+    "telefono": "098778636"
+  },
+  {
+    "nombreCompleto": "Nshuel",
+    "metodoPago": "EFECTIVO",
+    "edad": 18,
+    "documento": 123345656,
+    "telefono": "098677665658"
+  },
+  {
+    "nombreCompleto": "Magnus",
+    "metodoPago": "EFECTIVO",
+    "edad": 30,
+    "documento": 89875646,
+    "telefono": "0987788765"
+  },
+  {
+    "nombreCompleto": "Nenecho R",
+    "metodoPago": "EFECTIVO",
+    "edad": 45,
+    "documento": 3333333,
+    "telefono": "0988762134"
+  },
+  {
+    "nombreCompleto": "Ramon Sosa",
+    "metodoPago": "EFECTIVO",
+    "edad": 27,
+    "documento": 4444333,
+    "telefono": "0987665544"
+  },
+  {
+    "nombreCompleto": "Justin Bieber",
+    "metodoPago": "TARJETA",
+    "tarjeta": "12097986573456",
+    "edad": 30,
+    "documento": 8889768,
+    "telefono": "0987776655"
+  },
+  {
     "nombreCompleto": "Leonardo Dicaprio",
     "metodoPago": "EFECTIVO",
     "edad": 56,
     "documento": 2090734,
     "telefono": "0987878778"
+  },
+  {
+    "nombreCompleto": "Ariana Grande",
+    "metodoPago": "TARJETA",
+    "tarjeta": "12340987654332",
+    "edad": 31,
+    "documento": 7689543,
+    "telefono": "0987647352"
   },
   {
     "nombreCompleto": "Nathan Vicesar",
@@ -154,13 +190,6 @@
     "edad": 40,
     "documento": 5908897,
     "telefono": "0987844123"
-  },
-  {
-    "nombreCompleto": "Maluma",
-    "metodoPago": "EFECTIVO",
-    "edad": 32,
-    "documento": 5551112,
-    "telefono": "0987767676"
   },
   {
     "nombreCompleto": "Jona",

@@ -49,6 +49,10 @@ public class MenuVentas extends JFrame {
 
     private final MenuPrincipal menuPrincipal;
 
+    private JComboBox<String> comboFiltroCliente;
+    private JTextField campoFechaInicio;
+    private JTextField campoFechaFin;
+
     public MenuVentas(MenuPrincipal menuPrincipal,
             ControladorCliente contClientes,
             ControladorProducto conProducto,
@@ -221,11 +225,10 @@ public class MenuVentas extends JFrame {
         panelDerecho.setOpaque(false);
         panelDerecho.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-
         JPanel panelSuperior = new JPanel(new BorderLayout());
         panelSuperior.setOpaque(false);
 
-        panelDerecho.add(panelSuperior, BorderLayout.NORTH); 
+        panelDerecho.add(panelSuperior, BorderLayout.NORTH);
 
         // barra de busqueda
         JPanel panelBusqueda = new JPanel(new BorderLayout(10, 0));
@@ -252,6 +255,97 @@ public class MenuVentas extends JFrame {
 
         panelBusqueda.add(lblBuscar, BorderLayout.WEST);
         panelBusqueda.add(campoBusqueda, BorderLayout.CENTER);
+
+        JPanel panelFiltros = new JPanel(new GridLayout(2, 1, 5, 5));
+        panelFiltros.setOpaque(false);
+        panelFiltros.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(COLOR_BOTON, 1),
+                "Filtros Avanzados",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new Font("Arial", Font.BOLD, 12),
+                COLOR_TEXTO
+        ));
+
+// Filtro por cliente
+        JPanel panelFiltroCliente = new JPanel(new BorderLayout(5, 0));
+        panelFiltroCliente.setOpaque(false);
+        JLabel lblFiltroCliente = new JLabel("Cliente:");
+        lblFiltroCliente.setForeground(COLOR_TEXTO);
+        lblFiltroCliente.setFont(new Font("Arial", Font.BOLD, 12));
+
+        comboFiltroCliente = new JComboBox<>();
+        comboFiltroCliente.addItem("Todos los clientes");
+// Cargar clientes disponibles
+        controladorClientes.listaClientes().forEach(cliente
+                -> comboFiltroCliente.addItem(cliente.getNombreCompleto())
+        );
+        comboFiltroCliente.setBackground(COLOR_BUSQUEDA);
+        comboFiltroCliente.setForeground(COLOR_TEXTO);
+        comboFiltroCliente.addActionListener(e -> aplicarFiltros());
+
+        panelFiltroCliente.add(lblFiltroCliente, BorderLayout.WEST);
+        panelFiltroCliente.add(comboFiltroCliente, BorderLayout.CENTER);
+
+// Filtro por fecha
+        JPanel panelFiltroFecha = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelFiltroFecha.setOpaque(false);
+
+        JLabel lblFechaDesde = new JLabel("Desde:");
+        lblFechaDesde.setForeground(COLOR_TEXTO);
+        lblFechaDesde.setFont(new Font("Arial", Font.BOLD, 12));
+
+        campoFechaInicio = new JTextField(10);
+        campoFechaInicio.setBackground(COLOR_BUSQUEDA);
+        campoFechaInicio.setForeground(COLOR_TEXTO);
+        campoFechaInicio.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(COLOR_BOTON, 1),
+                BorderFactory.createEmptyBorder(5, 8, 5, 8)
+        ));
+        campoFechaInicio.setToolTipText("Formato: dd/MM/yyyy");
+        campoFechaInicio.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                aplicarFiltros();
+            }
+        });
+
+        JLabel lblFechaHasta = new JLabel("Hasta:");
+        lblFechaHasta.setForeground(COLOR_TEXTO);
+        lblFechaHasta.setFont(new Font("Arial", Font.BOLD, 12));
+
+        campoFechaFin = new JTextField(10);
+        campoFechaFin.setBackground(COLOR_BUSQUEDA);
+        campoFechaFin.setForeground(COLOR_TEXTO);
+        campoFechaFin.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(COLOR_BOTON, 1),
+                BorderFactory.createEmptyBorder(5, 8, 5, 8)
+        ));
+        campoFechaFin.setToolTipText("Formato: dd/MM/yyyy");
+        campoFechaFin.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                aplicarFiltros();
+            }
+        });
+
+        JButton btnLimpiarFiltros = new JButton("Limpiar");
+        btnLimpiarFiltros.setFont(new Font("Arial", Font.PLAIN, 11));
+        btnLimpiarFiltros.setForeground(COLOR_TEXTO);
+        btnLimpiarFiltros.setBackground(COLOR_BOTON);
+        btnLimpiarFiltros.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        btnLimpiarFiltros.setFocusPainted(false);
+        btnLimpiarFiltros.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnLimpiarFiltros.addActionListener(e -> limpiarFiltros());
+
+        panelFiltroFecha.add(lblFechaDesde);
+        panelFiltroFecha.add(campoFechaInicio);
+        panelFiltroFecha.add(lblFechaHasta);
+        panelFiltroFecha.add(campoFechaFin);
+        panelFiltroFecha.add(btnLimpiarFiltros);
+
+        panelFiltros.add(panelFiltroCliente);
+        panelFiltros.add(panelFiltroFecha);
 
         // opciones de ordenamiento
         JPanel panelOrdenamiento = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -286,6 +380,7 @@ public class MenuVentas extends JFrame {
 
         panelSuperior.add(panelBusqueda, BorderLayout.NORTH);
         panelSuperior.add(panelOrdenamiento, BorderLayout.SOUTH);
+        panelSuperior.add(panelFiltros, BorderLayout.CENTER);
 
         //tabla de las ventas
         String[] columnas = {"ID", "Cliente", "Total", "Método de Pago", "Fecha"};
@@ -322,6 +417,16 @@ public class MenuVentas extends JFrame {
         tablaVentas.setGridColor(COLOR_BOTON);
         tablaVentas.setShowGrid(true);
         tablaVentas.setAutoCreateRowSorter(true);
+        tablaVentas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = tablaVentas.rowAtPoint(e.getPoint());
+                if (row >= 0) {
+                    int idVenta = (int) modeloTabla.getValueAt(row, 0);
+                    mostrarDetallesVenta(idVenta);
+                }
+            }
+        });
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -361,38 +466,123 @@ public class MenuVentas extends JFrame {
     }
 
     private void filtrarVentas() {
-        String filtro = campoBusqueda.getText().toLowerCase().trim();
-        modeloTabla.setRowCount(0);
+        aplicarFiltros();
+    }
 
+    private void aplicarFiltros() {
+        String filtroBusqueda = campoBusqueda.getText().toLowerCase().trim();
+        String filtroCliente = (String) comboFiltroCliente.getSelectedItem();
+        String fechaInicio = campoFechaInicio.getText().trim();
+        String fechaFin = campoFechaFin.getText().trim();
+
+        modeloTabla.setRowCount(0);
         List<Venta> ventas = controladorVentas.listarVentas();
-        if (filtro.isEmpty()) {
-            for (Venta venta : ventas) {
-                agregarFilaTabla(venta);
-            }
-            return;
-        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         for (Venta venta : ventas) {
-            if (String.valueOf(venta.getIdVenta()).contains(filtro)
-                    || venta.getCliente().getNombreCompleto().toLowerCase().contains(filtro)) {
+            boolean cumpleFiltros = true;
+
+            // Filtro por búsqueda (ID o nombre)
+            if (!filtroBusqueda.isEmpty()) {
+                if (!String.valueOf(venta.getIdVenta()).contains(filtroBusqueda)
+                        && !venta.getCliente().getNombreCompleto().toLowerCase().contains(filtroBusqueda)) {
+                    cumpleFiltros = false;
+                }
+            }
+
+            // Filtro por cliente
+            if (cumpleFiltros && filtroCliente != null && !filtroCliente.equals("Todos los clientes")) {
+                if (!venta.getCliente().getNombreCompleto().equals(filtroCliente)) {
+                    cumpleFiltros = false;
+                }
+            }
+
+            // Filtro por fecha
+            if (cumpleFiltros && (!fechaInicio.isEmpty() || !fechaFin.isEmpty())) {
+                try {
+                    LocalDate fechaVenta = venta.getFecha();
+
+                    if (!fechaInicio.isEmpty()) {
+                        LocalDate fechaInicioDate = LocalDate.parse(fechaInicio, formatter);
+                        if (fechaVenta.isBefore(fechaInicioDate)) {
+                            cumpleFiltros = false;
+                        }
+                    }
+
+                    if (cumpleFiltros && !fechaFin.isEmpty()) {
+                        LocalDate fechaFinDate = LocalDate.parse(fechaFin, formatter);
+                        if (fechaVenta.isAfter(fechaFinDate)) {
+                            cumpleFiltros = false;
+                        }
+                    }
+                } catch (Exception e) {
+                    // Si hay error en el formato de fecha, ignorar este filtro
+                    // Podrías mostrar un mensaje de error si quieres
+                }
+            }
+
+            if (cumpleFiltros) {
                 agregarFilaTabla(venta);
             }
         }
     }
 
+    private void limpiarFiltros() {
+        campoBusqueda.setText("");
+        comboFiltroCliente.setSelectedIndex(0);
+        campoFechaInicio.setText("");
+        campoFechaFin.setText("");
+        aplicarFiltros(); // Recargar datos sin filtros
+    }
+
     private void ordenarTabla(String criterio) {
         List<Venta> ventas = controladorVentas.listarVentas();
-        String filtro = campoBusqueda.getText().trim().toLowerCase();
+        String filtroBusqueda = campoBusqueda.getText().trim().toLowerCase();
+        String filtroCliente = (String) comboFiltroCliente.getSelectedItem();
+        String fechaInicio = campoFechaInicio.getText().trim();
+        String fechaFin = campoFechaFin.getText().trim();
 
-        // filtro para la busqueda
-        if (!filtro.isEmpty()) {
-            ventas = ventas.stream()
-                    .filter(v -> String.valueOf(v.getIdVenta()).contains(filtro)
-                    || v.getCliente().getNombreCompleto().toLowerCase().contains(filtro))
-                    .collect(Collectors.toList());
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // ordenar por 
+        // Aplicar todos los filtros
+        ventas = ventas.stream().filter(venta -> {
+            boolean cumple = true;
+
+            // Filtro búsqueda
+            if (!filtroBusqueda.isEmpty()) {
+                cumple = String.valueOf(venta.getIdVenta()).contains(filtroBusqueda)
+                        || venta.getCliente().getNombreCompleto().toLowerCase().contains(filtroBusqueda);
+            }
+
+            // Filtro cliente
+            if (cumple && filtroCliente != null && !filtroCliente.equals("Todos los clientes")) {
+                cumple = venta.getCliente().getNombreCompleto().equals(filtroCliente);
+            }
+
+            // Filtro fecha
+            if (cumple && (!fechaInicio.isEmpty() || !fechaFin.isEmpty())) {
+                try {
+                    LocalDate fechaVenta = venta.getFecha();
+
+                    if (!fechaInicio.isEmpty()) {
+                        LocalDate fechaInicioDate = LocalDate.parse(fechaInicio, formatter);
+                        cumple = !fechaVenta.isBefore(fechaInicioDate);
+                    }
+
+                    if (cumple && !fechaFin.isEmpty()) {
+                        LocalDate fechaFinDate = LocalDate.parse(fechaFin, formatter);
+                        cumple = !fechaVenta.isAfter(fechaFinDate);
+                    }
+                } catch (Exception e) {
+                    // Formato de fecha inválido, ignorar filtro
+                }
+            }
+
+            return cumple;
+        }).collect(Collectors.toList());
+
+        // Ordenar según criterio
         switch (criterio) {
             case "cliente":
                 ventas.sort(Comparator.comparing(v -> v.getCliente().getNombreCompleto()));
@@ -427,7 +617,7 @@ public class MenuVentas extends JFrame {
         FormularioVentaDialog dialog = new FormularioVentaDialog(this, null);
         dialog.setVisible(true);
         if (dialog.isGuardado()) {
-            cargarDatos(); 
+            cargarDatos();
         }
     }
 
@@ -473,6 +663,31 @@ public class MenuVentas extends JFrame {
         dialog.setVisible(true);
         if (dialog.isGuardado()) {
             cargarDatos(); // Refrescar tabla
+        }
+    }
+
+    private void mostrarDetallesVenta(int idVenta) {
+        Venta venta = controladorVentas.obtenerVentaPorId(idVenta);
+        if (venta != null) {
+            StringBuilder detalles = new StringBuilder();
+            detalles.append("=== DETALLE DE VENTA ===\n\n");
+            detalles.append("ID: ").append(venta.getIdVenta()).append("\n");
+            detalles.append("Cliente: ").append(venta.getCliente().getNombreCompleto()).append("\n");
+            detalles.append("Fecha: ").append(venta.getFecha()).append("\n");
+            detalles.append("Total: $").append(String.format("%.2f", venta.getTotal())).append("\n");
+            detalles.append("\nProductos:\n");
+
+            for (Map.Entry<Producto, Integer> entry : venta.getListaCompras().entrySet()) {
+                Producto p = entry.getKey();
+                detalles.append("- ").append(p.getNombre())
+                        .append(": ").append(entry.getValue())
+                        .append(" x $").append(String.format("%.2f", p.getPrecio()))
+                        .append("\n");
+            }
+
+            JOptionPane.showMessageDialog(this, detalles.toString(),
+                    "Detalles de Venta",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -595,7 +810,6 @@ public class MenuVentas extends JFrame {
                 return;
             }
 
-            
             for (int i = 0; i < modeloTablaProductos.getRowCount(); i++) {
                 String nombreProducto = (String) modeloTablaProductos.getValueAt(i, 0);
                 if (nombreProducto.equals(producto.getNombre())) {
@@ -649,13 +863,12 @@ public class MenuVentas extends JFrame {
                 return;
             }
 
-            
             HashMap<Producto, Integer> productosVendidos = new HashMap<>();
             for (int i = 0; i < modeloTablaProductos.getRowCount(); i++) {
                 String nombreProducto = (String) modeloTablaProductos.getValueAt(i, 0);
                 int cantidad = (Integer) modeloTablaProductos.getValueAt(i, 2);
 
-           //buscar producto por nombre
+                //buscar producto por nombre
                 Producto producto = controladorProductos.listaProductos().stream()
                         .filter(p -> p.getNombre().equals(nombreProducto))
                         .findFirst()

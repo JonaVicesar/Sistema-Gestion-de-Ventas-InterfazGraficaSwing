@@ -40,10 +40,17 @@ import com.ventas.auth.Usuario;
 import com.ventas.controlador.ControladorCliente;
 import com.ventas.controlador.ControladorProducto;
 import com.ventas.controlador.ControladorVenta;
+import com.ventas.modelo.Venta;
 import com.ventas.repositorio.RepositorioCliente;
 import com.ventas.repositorio.RepositorioProductos;
 import com.ventas.repositorio.RepositorioVentas;
 import com.ventas.util.PathManager;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class MenuPrincipal extends JFrame {
 
@@ -140,7 +147,7 @@ public class MenuPrincipal extends JFrame {
         lblLogo.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 32));
         lblLogo.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 
-        lblTitulo = new JLabel("Vicesar SA");
+        lblTitulo = new JLabel("Vicesar Market");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
         lblTitulo.setForeground(COLOR_TEXTO_CLARO);
 
@@ -320,7 +327,7 @@ public class MenuPrincipal extends JFrame {
         };
         panelFondo.setLayout(new BorderLayout());
 
-        // Panel de contenido principal
+        // panel de contenido principal
         JPanel panelPrincipal = new JPanel(new BorderLayout());
         panelPrincipal.setOpaque(false);
 
@@ -329,38 +336,36 @@ public class MenuPrincipal extends JFrame {
         panelIzquierdo.setOpaque(false);
         panelIzquierdo.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
-        // Panel de bienvenida
+
         JPanel panelBienvenidaContent = crearPanelBienvenidaContent();
         panelIzquierdo.add(panelBienvenidaContent);
         panelIzquierdo.add(Box.createVerticalStrut(30));
 
-        // Panel de estadísticas mejorado
+     
         JPanel panelStats = crearPanelEstadisticasMejorado();
         panelIzquierdo.add(panelStats);
         panelIzquierdo.add(Box.createVerticalStrut(30));
 
-        // Panel de accesos rápidos
+
         JPanel panelAccesosRapidos = crearPanelAccesosRapidos();
         panelIzquierdo.add(panelAccesosRapidos);
 
-        // NUEVO: Panel derecho con información de la empresa
         JPanel panelDerecho = new JPanel();
         panelDerecho.setLayout(new BoxLayout(panelDerecho, BoxLayout.Y_AXIS));
         panelDerecho.setOpaque(false);
         panelDerecho.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         panelDerecho.setPreferredSize(new Dimension(400, 0)); // Ancho preferido
 
-        // Título de la empresa
+        // tiutlo
         JLabel lblTituloEmpresa = new JLabel("Vicesar SA");
         lblTituloEmpresa.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblTituloEmpresa.setForeground(Color.WHITE);
         lblTituloEmpresa.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        // Texto descriptivo de la empresa
+        
         JTextArea txtDescripcion = new JTextArea();
         txtDescripcion.setText(
                 "Acerca de Vicesar CO\n\n"
-                + "Vicesar CO & Asociados forma parte del imperio transnacional Vicesar S. A., un megaconglomerado con inversiones en los sectores más estratégicos del universo conocido.\n\n"
+                + "Vicesar Market forma parte del imperio transnacional Vicesar CO. & Associates, un megaconglomerado con inversiones en los sectores más estratégicos del universo conocido.\n\n"
                 + "Desde tecnología cuántica hasta ganadería interplanetaria, pasando por minería de datos, extracción de kriptonita y cultivo de yerba mate en Marte, Vicesar CO no conoce límites.\n\n"
                 + "Entre sus principales divisiones se encuentran:\n"
                 + "- Vicesar Bank™:.\n\n"
@@ -379,7 +384,6 @@ public class MenuPrincipal extends JFrame {
         txtDescripcion.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtDescripcion.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Panel con borde para destacar el texto
         JPanel panelTextoEmpresa = new JPanel();
         //panelDerecho.add(lblTituloEmpresa);
         panelDerecho.add(Box.createVerticalStrut(10));
@@ -388,7 +392,6 @@ public class MenuPrincipal extends JFrame {
         panelDerecho.add(Box.createVerticalStrut(20));
         panelDerecho.add(panelTextoEmpresa);
 
-        // Agregar paneles al contenedor principal
         panelPrincipal.add(panelIzquierdo, BorderLayout.WEST);
         panelPrincipal.add(panelDerecho, BorderLayout.CENTER); // Panel derecho en el centro
 
@@ -518,23 +521,23 @@ public class MenuPrincipal extends JFrame {
     }
 
     private JPanel crearPanelReportes() {
-        JPanel panel = crearPanelSeccionBase("📊 Reportes y Estadísticas");
+        JPanel panel = crearPanelSeccionBase("Informes");
 
         JPanel contenido = new JPanel(new GridBagLayout());
         contenido.setBackground(Color.WHITE);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 15, 15, 15);
 
-        // Botones de reportes
         String[] reportes = {
-            "📈 Ventas por Período",
-            "👥 Reporte de Clientes",
-            "📦 Estado del Inventario",
-            "💰 Productos Más Vendidos"
+            "Ventas Anuladas",
         };
 
         for (int i = 0; i < reportes.length; i++) {
+            final int indice = i;
             JButton btnReporte = crearBotonReporte(reportes[i]);
+            btnReporte.addActionListener(e -> {
+                mostrarReporte(reportes[indice]);
+            });
             gbc.gridx = i % 2;
             gbc.gridy = i / 2;
             gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -570,6 +573,52 @@ public class MenuPrincipal extends JFrame {
         });
 
         return boton;
+    }
+
+    private void mostrarReporte(String tipoReporte) {
+        switch (tipoReporte) {
+            case "Ventas Anuladas":
+                mostrarVentasAnuladas();
+                break;
+                
+                //no pude implementar los demas reportes tdv
+        }
+    }
+
+    private void mostrarVentasAnuladas() {
+        List<Venta> ventasAnuladas = controladorVentas.listarVentasAnuladas();
+
+        // Crear modelo de tabla
+        String[] columnas = {"ID", "Cliente", "Total", "Fecha", "Estado"};
+        DefaultTableModel model = new DefaultTableModel(columnas, 0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        for (Venta venta : ventasAnuladas) {
+            Object[] fila = {
+                venta.getIdVenta(),
+                venta.getCliente().getNombreCompleto(),
+                String.format("$%.2f", venta.getTotal()),
+                venta.getFecha().format(formatter),
+                venta.isAnulada() ? "ANULADA" : "ACTIVA"
+            };
+            model.addRow(fila);
+        }
+
+
+        JTable tabla = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(tabla);
+
+        JDialog dialog = new JDialog(this, "Ventas Anuladas", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.add(scrollPane, BorderLayout.CENTER);
+
+        JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(e -> dialog.dispose());
+        dialog.add(btnCerrar, BorderLayout.SOUTH);
+
+        dialog.setSize(600, 400);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
     }
 
     private JPanel crearPanelAcercaDe() {
@@ -666,7 +715,7 @@ public class MenuPrincipal extends JFrame {
         contenido.setBackground(Color.WHITE);
         contenido.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
-        JLabel lblMensaje = new JLabel("Funcionalidad de " + titulo + " en desarrollo");
+        JLabel lblMensaje = new JLabel("no funciona aun");
         lblMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 18));
         lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
         lblMensaje.setForeground(new Color(120, 120, 120));
@@ -706,7 +755,7 @@ public class MenuPrincipal extends JFrame {
     }
 
     private void configurarVentana() {
-        setTitle("Vicesar SA - Sistema de Gestión Comercial");
+        setTitle("Vicesar CO - Sistema de Gestión Comercial");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new Dimension(1200, 800));
@@ -781,7 +830,7 @@ public class MenuPrincipal extends JFrame {
         this.setVisible(false);
         MenuVentas menuVentas = new MenuVentas(this, controladorClientes, controladorProductos, controladorVentas);
 
-         //abrir maximizada si el menu principal lo esta
+        //abrir maximizada si el menu principal lo esta
         if ((estadoActual & JFrame.MAXIMIZED_BOTH) == JFrame.MAXIMIZED_BOTH) {
             menuVentas.setExtendedState(JFrame.MAXIMIZED_BOTH);
         } else {

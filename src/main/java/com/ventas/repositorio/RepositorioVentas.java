@@ -152,8 +152,7 @@ public class RepositorioVentas {
         }
         return false;
     }
-
-
+        
     /**
      * Agrega un producto a una venta existente, sumando la cantidad si ya
      * estaba presente
