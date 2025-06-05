@@ -3,31 +3,31 @@
     "nombre": "Cerveza Pilsen",
     "id": 10,
     "precio": 9.0,
-    "cantidad": 391
+    "cantidad": 382
   },
   {
     "nombre": "Takis",
     "id": 3,
     "precio": 3.0,
-    "cantidad": 479
+    "cantidad": 478
   },
   {
     "nombre": "Fortin Etiqueta Negra",
     "id": 6,
     "precio": 6.0,
-    "cantidad": 295
+    "cantidad": 293
   },
   {
     "nombre": "Galletitas Tortuguita",
     "id": 4,
     "precio": 6.0,
-    "cantidad": 495
+    "cantidad": 492
   },
   {
     "nombre": "Ron Fortin Frutos Rojos",
     "id": 11,
     "precio": 9.0,
-    "cantidad": 143
+    "cantidad": 138
   },
   {
     "nombre": "Fanta",
@@ -39,7 +39,7 @@
     "nombre": "Jugo Zuko",
     "id": 7,
     "precio": 0.15,
-    "cantidad": 499
+    "cantidad": 496
   },
   {
     "nombre": "Yes Yes",

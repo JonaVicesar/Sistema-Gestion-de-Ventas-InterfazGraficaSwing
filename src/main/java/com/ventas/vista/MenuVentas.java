@@ -517,8 +517,6 @@ public class MenuVentas extends JFrame {
                         }
                     }
                 } catch (Exception e) {
-                    // Si hay error en el formato de fecha, ignorar este filtro
-                    // Podrías mostrar un mensaje de error si quieres
                 }
             }
 

@@ -12,4 +12,4 @@ public class VentasApp {
         nuevo.setVisible(true);   
     }
 
-}
+} 

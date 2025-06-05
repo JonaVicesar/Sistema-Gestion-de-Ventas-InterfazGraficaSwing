@@ -493,7 +493,7 @@
     ],
     "fecha": "2025-06-01",
     "total": 6.15,
-    "anulada": false
+    "anulada": true
   },
   {
     "idVenta": 18,
@@ -820,6 +820,116 @@
     ],
     "fecha": "2025-06-03",
     "total": 30.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 30,
+    "cliente": {
+      "nombreCompleto": "Taylor Swift",
+      "metodoPago": "TARJETA",
+      "tarjeta": "78901264535623",
+      "edad": 35,
+      "documento": 6784932,
+      "telefono": "0987636721"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Cerveza Pilsen",
+          "id": 10,
+          "precio": 9.0,
+          "cantidad": 382
+        },
+        "cantidad": 9
+      }
+    ],
+    "fecha": "2025-06-04",
+    "total": 81.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 31,
+    "cliente": {
+      "nombreCompleto": "Neymar Junior",
+      "metodoPago": "EFECTIVO",
+      "edad": 32,
+      "documento": 2345888,
+      "telefono": "0987888999"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Takis",
+          "id": 3,
+          "precio": 3.0,
+          "cantidad": 478
+        },
+        "cantidad": 1
+      },
+      {
+        "producto": {
+          "nombre": "Fortin Etiqueta Negra",
+          "id": 6,
+          "precio": 6.0,
+          "cantidad": 293
+        },
+        "cantidad": 2
+      },
+      {
+        "producto": {
+          "nombre": "Ron Fortin Frutos Rojos",
+          "id": 11,
+          "precio": 9.0,
+          "cantidad": 141
+        },
+        "cantidad": 2
+      }
+    ],
+    "fecha": "2025-06-04",
+    "total": 33.0,
+    "anulada": false
+  },
+  {
+    "idVenta": 32,
+    "cliente": {
+      "nombreCompleto": "Pablo Zeballos",
+      "metodoPago": "TARJETA",
+      "tarjeta": "56712345120941",
+      "edad": 45,
+      "documento": 2908777,
+      "telefono": "0988321654"
+    },
+    "listaCompras": [
+      {
+        "producto": {
+          "nombre": "Jugo Zuko",
+          "id": 7,
+          "precio": 0.15,
+          "cantidad": 496
+        },
+        "cantidad": 3
+      },
+      {
+        "producto": {
+          "nombre": "Ron Fortin Frutos Rojos",
+          "id": 11,
+          "precio": 9.0,
+          "cantidad": 138
+        },
+        "cantidad": 3
+      },
+      {
+        "producto": {
+          "nombre": "Galletitas Tortuguita",
+          "id": 4,
+          "precio": 6.0,
+          "cantidad": 492
+        },
+        "cantidad": 3
+      }
+    ],
+    "fecha": "2025-06-04",
+    "total": 45.45,
     "anulada": false
   }
 ]

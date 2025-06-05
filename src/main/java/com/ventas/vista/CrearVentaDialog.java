@@ -1,4 +1,3 @@
-// CrearVentaDialog.java
 package com.ventas.vista;
 
 import com.ventas.modelo.*;
@@ -6,10 +5,8 @@ import com.ventas.repositorio.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class CrearVentaDialog extends JDialog {
@@ -96,7 +93,6 @@ public class CrearVentaDialog extends JDialog {
         panelInferior.add(panelTotal, BorderLayout.CENTER);
         panelInferior.add(panelBotones, BorderLayout.SOUTH);
         
-        // Ensamblar
         panel.add(panelCliente, BorderLayout.NORTH);
         panel.add(panelProductos, BorderLayout.CENTER);
         panel.add(panelInferior, BorderLayout.SOUTH);
@@ -107,14 +103,7 @@ public class CrearVentaDialog extends JDialog {
     private void mostrarSelectorProductos() {
         // Implementar selector de productos
     }
-    
-    private void actualizarTotal() {
-        double total = productosSeleccionados.entrySet().stream()
-            .mapToDouble(entry -> entry.getKey().getPrecio() * entry.getValue())
-            .sum();
-        lblTotal.setText(String.format("$%.2f", total));
-    }
-    
+
     private void guardarVenta() {
         Cliente cliente = (Cliente) cmbClientes.getSelectedItem();
         if (cliente == null || productosSeleccionados.isEmpty()) {

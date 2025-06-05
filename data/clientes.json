@@ -52,6 +52,13 @@
     "telefono": "098787878"
   },
   {
+    "nombreCompleto": "Arnaldo",
+    "metodoPago": "EFECTIVO",
+    "edad": 15,
+    "documento": 6789098,
+    "telefono": "0987654532"
+  },
+  {
     "nombreCompleto": "Kylian Mbappé",
     "metodoPago": "tarjeta",
     "tarjeta": "123456789012345",
@@ -103,13 +110,6 @@
     "edad": 18,
     "documento": 123345656,
     "telefono": "098677665658"
-  },
-  {
-    "nombreCompleto": "Magnus",
-    "metodoPago": "EFECTIVO",
-    "edad": 30,
-    "documento": 89875646,
-    "telefono": "0987788765"
   },
   {
     "nombreCompleto": "Nenecho R",
